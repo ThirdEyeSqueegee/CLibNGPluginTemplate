@@ -1,0 +1,40 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "clib-ng-plugin-template",
+  "version-string": "1.0.0",
+  "port-version": 0,
+  "description": "CommonLibSSE NG Plugin Template",
+  "license": "MIT",
+  "features": {
+    "scripts": {
+      "description": "Install Papyrus sources for this program to develop on top of it."
+    },
+    "scripts-dev": {
+      "description": "Install Papyrus sources necessary to develop scripts for this plugin.",
+      "dependencies": [
+        "bethesda-skyrim-scripts",
+        {
+          "name": "skse",
+          "default-features": false,
+          "features": ["scripts"]
+        }
+      ]
+    },
+    "plugin": {
+      "description": "Build the SKSE plugin.",
+      "dependencies": ["commonlibsse-ng"]
+    },
+    "tests": {
+      "description": "Build tests for the SKSE plugin.",
+      "dependencies": [
+        {
+          "name": "clib-ng-plugin-template",
+          "default-features": false,
+          "features": ["plugin"]
+        },
+        "catch2"
+      ]
+    }
+  },
+  "default-features": ["scripts-dev", "plugin", "tests"]
+}
