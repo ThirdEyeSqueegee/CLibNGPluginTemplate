@@ -14,6 +14,7 @@
 ## Dependencies
 
 - [vcpkg](https://github.com/microsoft/vcpkg/releases)
+  - Create a new Windows environment variable called `VCPKG_ROOT` which points to your vcpkg install directory
 - [CMake](https://cmake.org/)
 - [LLVM](https://github.com/llvm/llvm-project/releases)
 - Visual Studio 2022 with C++ workload
