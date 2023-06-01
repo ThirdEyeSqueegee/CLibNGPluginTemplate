@@ -1,9 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-  "name": "reading-is-bad",
+  "name": "plugin-name",
   "version-string": "1.0.0",
   "port-version": 0,
-  "description": "Reading Is Bad SKSE",
+  "description": "Plugin description",
   "license": "MIT",
   "features": {
     "scripts": {
@@ -28,7 +28,7 @@
       "description": "Build tests for the SKSE plugin.",
       "dependencies": [
         {
-          "name": "reading-is-bad",
+          "name": "plugin-name",
           "default-features": false,
           "features": ["plugin"]
         },
