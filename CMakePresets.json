@@ -74,27 +74,6 @@
       }
     },
     {
-      "name": "build-debug-msvc",
-      "inherits": [
-        "base",
-        "vcpkg",
-        "win32-unicode",
-        "x64",
-        "build-tests",
-        "msvc"
-      ],
-      "displayName": "Debug",
-      "description": "Debug build for testing.",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/debug-msvc",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": {
-          "type": "STRING",
-          "value": "Debug"
-        }
-      }
-    },
-    {
       "name": "build-release-msvc",
       "inherits": [
         "base",
@@ -122,19 +101,13 @@
       "displayName": "Release (MSVC)",
       "configurePreset": "build-release-msvc",
       "description": "Optimized release build."
-    },
-    {
-      "name": "debug-msvc",
-      "displayName": "Debug (MSVC)",
-      "configurePreset": "build-debug-msvc",
-      "description": "Debug build for testing."
     }
   ],
   "testPresets": [
     {
       "name": "tests-all",
       "displayName": "All Tests",
-      "configurePreset": "build-debug-msvc",
+      "configurePreset": "build-release-msvc",
       "output": {
         "outputOnFailure": true
       },

@@ -5,8 +5,8 @@ message("Using toolchain file ${CMAKE_TOOLCHAIN_FILE}.")
 ## Define project
 ########################################################################################################################
 project(
-        PluginTemplate
-        VERSION 1.0.0
+        ReadingIsBad
+        VERSION 1.0.3
         LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -20,12 +20,15 @@ configure_file(
         @ONLY)
 
 set(PUBLIC_HEADER_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}")
-set(headers)
+set(headers
+        include/Utility.h
+        include/Settings.h)
 
 set(sources
-        src/Config.cpp
         src/Logging.cpp
         src/Main.cpp
+        src/Events.cpp
+        src/Settings.cpp
 
         ${CMAKE_CURRENT_BINARY_DIR}/version.rc)
 
@@ -105,11 +108,8 @@ endif()
 ## Automatic plugin deployment
 ########################################################################################################################
 # Automatic deployment to FOMOD directory.
-if(CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(BUILD_NAME "Debug")
-else()
-    set(BUILD_NAME "Release")
-endif()
+set(BUILD_NAME "Release")
+
 install(DIRECTORY DESTINATION "${CMAKE_CURRENT_SOURCE_DIR}/contrib/Distribution/Papyrus${BUILD_NAME}/")
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E make_directory "${CMAKE_CURRENT_SOURCE_DIR}/contrib/Distribution/Plugin${BUILD_NAME}/")

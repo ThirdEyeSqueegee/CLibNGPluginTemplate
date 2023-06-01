@@ -1,9 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-  "name": "clib-ng-plugin-template",
+  "name": "reading-is-bad",
   "version-string": "1.0.0",
   "port-version": 0,
-  "description": "CommonLibSSE NG Plugin Template",
+  "description": "Reading Is Bad SKSE",
   "license": "MIT",
   "features": {
     "scripts": {
@@ -22,13 +22,13 @@
     },
     "plugin": {
       "description": "Build the SKSE plugin.",
-      "dependencies": ["commonlibsse-ng"]
+      "dependencies": ["commonlibsse-ng", "simpleini"]
     },
     "tests": {
       "description": "Build tests for the SKSE plugin.",
       "dependencies": [
         {
-          "name": "clib-ng-plugin-template",
+          "name": "reading-is-bad",
           "default-features": false,
           "features": ["plugin"]
         },
