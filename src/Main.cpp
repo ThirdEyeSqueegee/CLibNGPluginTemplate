@@ -5,9 +5,6 @@
 
 void Listener(SKSE::MessagingInterface::Message* message) {
     if (message->type == SKSE::MessagingInterface::kDataLoaded) {
-        const auto handler = Events::OnSpellCastEventHandler::GetSingleton();
-        handler->Register();
-        FormLookup::LoadSpell();
         Settings::GetSingleton()->LoadSettings();
     }
 }
