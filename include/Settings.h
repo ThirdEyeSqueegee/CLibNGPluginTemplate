@@ -3,6 +3,7 @@
 class Settings {
 protected:
     Settings() = default;
+    ~Settings = default;
 
 public:
     Settings(const Settings&) = delete;

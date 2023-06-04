@@ -5,7 +5,7 @@
 
 void Listener(SKSE::MessagingInterface::Message* message) {
     if (message->type == SKSE::MessagingInterface::kDataLoaded) {
-        Settings::GetSingleton()->LoadSettings();
+        Settings::LoadSettings();
     }
 }
 
