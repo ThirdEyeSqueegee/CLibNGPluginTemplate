@@ -9,7 +9,7 @@
 
 ## Building your project
 
-- Select the `Debug (MSVC)` or `Release (MSVC)` build configuration and hit `Ctrl+Shift+B`
+- Hit `Ctrl+Shift+B`
 
 ## Dependencies
 
