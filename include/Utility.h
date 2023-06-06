@@ -3,7 +3,7 @@
 class Utility {
 protected:
     Utility() = default;
-    ~Utility = default;
+    ~Utility() = default;
 
 public:
     Utility(const Utility&) = delete; // Prevent copy construction
