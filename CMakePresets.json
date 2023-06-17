@@ -21,7 +21,7 @@
         "VCPKG_TARGET_TRIPLET": "x64-windows-skse",
         "VCPKG_HOST_TRIPLET": "x64-windows-skse",
         "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake",
-        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
+        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
       }
     },
     {
