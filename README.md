@@ -3,9 +3,9 @@
 ## Setup
 
 - Clone the repository
-- In `vcpkg.json`, specify the name and version of your plugin
-- In `vcpkg-configuration.json`, set the `baseline` to the latest commit for each repo
-- In `CMakeLists.txt`, specify the name and version of your plugin and add your .h and .cpp files
+- Run `cd CLibNGPluginTemplate`
+- Run `py project_script.py`
+- Enter your project name (in CamelCase)
 
 ## Building your project
 
