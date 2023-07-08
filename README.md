@@ -3,8 +3,8 @@
 ## Setup
 
 - Clone the repository
-- Run `cd CLibNGPluginTemplate`
-- Run `py project_script.py`
+- Run `cd .\CLibNGPluginTemplate\`
+- Run `py .\project_setup.py\`
 - Enter your project name (in CamelCase)
 
 ## Building your project
