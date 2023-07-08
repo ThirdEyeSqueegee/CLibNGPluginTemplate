@@ -9,7 +9,9 @@
 
 ## Building your project
 
-- Hit `Ctrl+Shift+B`
+- Visual Studio should prompt you to generate a CMake cache. Click on `Generate` and wait
+- One the CMake cache is generated, hit `Ctrl+Shift+B` to build your project
+- The .dll and .pdb files will be placed in `contrib\Distribution`
 
 ## Dependencies
 
