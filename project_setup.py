@@ -2,9 +2,23 @@ import os
 import re
 import shutil
 import stat
+import subprocess
+import json
 
 cwd = os.path.dirname(os.path.abspath(__file__))
-print(cwd)
+
+vcpkg_repo = "https://github.com/microsoft/vcpkg"
+colorglass_repo = "https://gitlab.com/colorglass/vcpkg-colorglass.git"
+process1 = subprocess.Popen(["git", "ls-remote", vcpkg_repo], stdout=subprocess.PIPE)
+process2 = subprocess.Popen(
+    ["git", "ls-remote", colorglass_repo], stdout=subprocess.PIPE
+)
+stdout, stderr = process1.communicate()
+sha = re.split(r"\t+", stdout.decode("ascii"))[0]
+vcpkg_sha = sha
+stdout, stderr = process2.communicate()
+sha = re.split(r"\t+", stdout.decode("ascii"))[0]
+colorglass_sha = sha
 
 
 def onerror(func, path, exc_info):
@@ -22,6 +36,19 @@ if os.path.isdir(os.path.join(cwd, ".vs")):
 
 project_name = input("Enter project name: ")
 pattern = re.compile(r"(?<!^)(?=[A-Z])")
+
+with open(
+    os.path.join(cwd, "vcpkg-configuration.json"), "r", encoding="utf-8"
+) as vcpkg_config_file:
+    vcpkg_config = json.load(vcpkg_config_file)
+
+vcpkg_config["default-registry"]["baseline"] = vcpkg_sha
+vcpkg_config["registries"][0]["baseline"] = colorglass_sha
+
+with open(
+    os.path.join(cwd, "vcpkg-configuration.json"), "w", encoding="utf-8"
+) as vcpkg_config_file:
+    json.dump(vcpkg_config, vcpkg_config_file, indent=4)
 
 with open(os.path.join(cwd, "vcpkg.json"), "r", encoding="utf-8") as vcpkg_json_file:
     vcpkg_json = vcpkg_json_file.read()

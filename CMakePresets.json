@@ -2,7 +2,7 @@
   "version": 5,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 26,
+    "minor": 27,
     "patch": 0
   },
   "configurePresets": [
@@ -68,6 +68,7 @@
       "description": "Optimized release build.",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/release-msvc",
+      "cmakeExecutable": "C:/Program Files/CMake/bin/",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": {
           "type": "STRING",
