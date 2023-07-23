@@ -72,7 +72,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": {
           "type": "STRING",
-          "value": "MinSizeRel"
+          "value": "RelWithDebInfo"
         }
       }
     }
