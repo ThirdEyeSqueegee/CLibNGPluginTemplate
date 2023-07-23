@@ -11,9 +11,12 @@ void Listener(SKSE::MessagingInterface::Message* message) {
 
 SKSEPluginLoad(const SKSE::LoadInterface* skse) {
     InitializeLogging();
-    const auto* plugin = SKSE::PluginDeclaration::GetSingleton();
-    auto version = plugin->GetVersion();
+
+    const auto plugin = SKSE::PluginDeclaration::GetSingleton();
+    const auto version = plugin->GetVersion();
+
     logger::info("{} {} is loading...", plugin->GetName(), version);
+
     Init(skse);
 
     if (const auto messaging = SKSE::GetMessagingInterface();
@@ -21,5 +24,6 @@ SKSEPluginLoad(const SKSE::LoadInterface* skse) {
         return false;
 
     logger::info("{} has finished loading.", plugin->GetName());
+
     return true;
 }
