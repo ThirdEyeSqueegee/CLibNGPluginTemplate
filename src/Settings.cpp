@@ -1,4 +1,5 @@
 #include "Settings.h"
+
 #include "SimpleIni.h"
 
 Settings* Settings::GetSingleton() {
@@ -8,7 +9,9 @@ Settings* Settings::GetSingleton() {
 
 void Settings::LoadSettings() {
     logger::info("Loading settings");
+
     CSimpleIniA ini;
+
     ini.SetUnicode();
     ini.LoadFile(R"(.\Data\SKSE\Plugins\PluginName.ini)");
 

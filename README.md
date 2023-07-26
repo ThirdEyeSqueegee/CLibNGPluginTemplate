@@ -11,14 +11,14 @@
 
 - Visual Studio should prompt you to generate a CMake cache. Click on `Generate` and wait
 - One the CMake cache is generated, hit `Ctrl+Shift+B` to build your project
-- The .dll and .pdb files will be placed in `contrib\Distribution`
+- The .dll and .pdb files will be placed in `contrib\PluginRelease`
 
 ## Dependencies
 
-- [vcpkg](https://github.com/microsoft/vcpkg/releases)
+- [vcpkg v2023.06.20+](https://github.com/microsoft/vcpkg/releases)
   - Create a new Windows environment variable called `VCPKG_ROOT` which points to your vcpkg install directory
-- [CMake](https://cmake.org/)
-- [LLVM](https://github.com/llvm/llvm-project/releases)
+- [CMake v3.27+](https://cmake.org/)
+- [LLVM v16.0.6+](https://github.com/llvm/llvm-project/releases)
 - Visual Studio 2022 with C++ workload
 
 ## Resources
