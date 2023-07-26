@@ -12,6 +12,13 @@ void Settings::LoadSettings() {
     ini.SetUnicode();
     ini.LoadFile(R"(.\Data\SKSE\Plugins\PluginName.ini)");
 
+    debug_logging = ini.GetValue("Log", "Debug");
+
+    if (debug_logging) {
+        spdlog::get("Global")->set_level(spdlog::level::level_enum::debug);
+        logger::debug("Debug logging enabled");
+    }
+
     // Load settings
 
     logger::info("Loaded settings");

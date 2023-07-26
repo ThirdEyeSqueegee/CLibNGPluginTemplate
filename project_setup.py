@@ -21,7 +21,7 @@ sha = re.split(r"\t+", stdout.decode("ascii"))[0]
 colorglass_sha = sha
 
 
-def onerror(func, path, exc_info):
+def onexc(func, path, exc_info):
     if not os.access(path, os.W_OK):
         os.chmod(path, stat.S_IWUSR)
         func(path)
@@ -30,9 +30,11 @@ def onerror(func, path, exc_info):
 
 
 if os.path.isdir(os.path.join(cwd, ".git")):
-    shutil.rmtree(os.path.join(cwd, ".git"), onerror=onerror)
+    shutil.rmtree(os.path.join(cwd, ".git"), onexc=onexc)
 if os.path.isdir(os.path.join(cwd, ".vs")):
-    shutil.rmtree(os.path.join(cwd, ".vs"), onerror=onerror)
+    shutil.rmtree(os.path.join(cwd, ".vs"), onexc=onexc)
+
+os.remove(os.path.join(cwd, "README.md"))
 
 project_name = input("Enter project name: ")
 pattern = re.compile(r"(?<!^)(?=[A-Z])")
