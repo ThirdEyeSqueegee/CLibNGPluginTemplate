@@ -6,8 +6,8 @@
   "features": {
     "plugin": {
       "description": "Build the SKSE plugin.",
-      "dependencies": ["commonlibsse-ng", "simpleini"]
+      "dependencies": [ "commonlibsse-ng", "simpleini" ]
     }
   },
-  "default-features": ["plugin"]
+  "default-features": [ "plugin" ]
 }

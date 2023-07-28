@@ -63,7 +63,7 @@
     },
     {
       "name": "build-release-msvc",
-      "inherits": ["base", "vcpkg", "win32-unicode", "x64", "msvc"],
+      "inherits": [ "base", "vcpkg", "win32-unicode", "x64", "msvc" ],
       "displayName": "Release",
       "description": "Optimized release build.",
       "generator": "Ninja",
