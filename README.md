@@ -60,7 +60,7 @@ The Address Library is a mapping of integer IDs (e.g. 57463) to addresses in dif
     - See `stl::write_call` in `CommonLibSSE-NG\include\SKSE\Trampoline.h`
   - Virtual function hook: These hooks target _every_ invocation of a given function via the virtual function table of its parent class.
     - See `stl::write_vfunc` in `CommonLibSSE-NG\include\REL\Relocation.h`
-- [Trampoline](<https://en.wikipedia.org/wiki/Trampoline_(computing)>): A trampoline is a
+- [Trampoline](<https://en.wikipedia.org/wiki/Trampoline_(computing)>): TODO
 - [Thunk](https://en.wikipedia.org/wiki/Thunk): A thin wrapper around a hooked function, allowing the execution of arbitrary logic before or after the hooked code
 - More about function hooks: [CommonLibSSE NG sample plugin repo](https://gitlab.com/colorglass/commonlibsse-sample-plugin/-/blob/main/README.md#function-hooks)
 
