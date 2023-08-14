@@ -49,7 +49,7 @@ We're all (hopefully) familiar with executables. The process of turning a set of
 
 A library, written in C++, which consists of reverse-engineered classes, functions, etc. found in the disassembled Skyrim executable. Due to its age, there are several different runtime versions of Skyrim. The main versions of interest are v1.5.97, v1.6.640, and VR. Due to differences in struct layouts etc. amongst these runtimes and the resulting difficulty of building DLLs that target different runtimes, [CommonLibSSE-NG](https://github.com/CharmedBaryon/CommonLibSSE-NG) (the basis of this template) was created, which allows building a single DLL that can target every Skyrim runtime using clever tricks like [relocations](<https://en.wikipedia.org/wiki/Relocation_(computing)>).
 
-## The Address Librarytm
+## The Address Library:tm:
 
 The Address Library is a mapping of integer IDs (e.g. 57463) to addresses in different Skyrim runtimes. It allows version-independent targeting of functions etc. using relocations. `REL::Relocation<decltype(&MyHook)> func{RELOCATION_ID(SE_ID, AE_ID), REL::Relocate(se_offset, ae_offset, vr_offset))}` returns a runtime-adjusted pointer to the function mapped by the given SE or AE address library IDs.
 
