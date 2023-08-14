@@ -20,8 +20,7 @@
         "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
         "VCPKG_TARGET_TRIPLET": "x64-windows-skse",
         "VCPKG_HOST_TRIPLET": "x64-windows-skse",
-        "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake",
-        "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreadedDLL"
+        "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake"
       }
     },
     {
@@ -51,7 +50,7 @@
       "name": "msvc",
       "hidden": true,
       "environment": {
-        "COMMONLIBSSE_COMPILER": "/permissive- /Zc:preprocessor /EHsc $penv{CXXFLAGS}"
+        "COMMONLIBSSE_COMPILER": "/EHsc /fp:except- /guard:cf- /permissive- /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor /Zc:templateScope /Zc:ternary /Zi /Zf /cgthreads8 /MP /W4"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
@@ -63,17 +62,30 @@
     },
     {
       "name": "build-release-msvc",
-      "inherits": [ "base", "vcpkg", "win32-unicode", "x64", "msvc" ],
+      "inherits": ["base", "vcpkg", "win32-unicode", "x64", "msvc"],
       "displayName": "Release",
       "description": "Optimized release build.",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/release-msvc",
       "cmakeExecutable": "C:/Program Files/CMake/bin/",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": {
-          "type": "STRING",
-          "value": "RelWithDebInfo"
-        }
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "COMPILER_FLAGS_RELWITHDEBINFO": "/O2 /Ob3 /fp:fast /GL /GR- /Gw /Gy- /Qpar /Qpar-report:2 /Zo /MD",
+        "LINKER_FLAGS_RELWITHDEBINFO": "/OPT:ICF=2,REF /CGTHREADS:8"
+      }
+    },
+    {
+      "name": "build-debug-msvc",
+      "inherits": ["base", "vcpkg", "win32-unicode", "x64", "msvc"],
+      "displayName": "Debug",
+      "description": "Debug build.",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/debug-msvc",
+      "cmakeExecutable": "C:/Program Files/CMake/bin/",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "COMPILER_FLAGS_DEBUG": "/Od /MDd",
+        "LINKER_FLAGS_DEBUG": "/DEBUG:FULL /LTCG:INCREMENTAL /CGTHREADS:8"
       }
     }
   ],
@@ -83,6 +95,12 @@
       "displayName": "Release (MSVC)",
       "configurePreset": "build-release-msvc",
       "description": "Optimized release build."
+    },
+    {
+      "name": "debug-msvc",
+      "displayName": "Debug (MSVC)",
+      "configurePreset": "build-debug-msvc",
+      "description": "Debug build."
     }
   ]
 }
