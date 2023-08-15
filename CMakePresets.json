@@ -50,7 +50,7 @@
       "name": "msvc",
       "hidden": true,
       "environment": {
-        "COMMONLIBSSE_COMPILER": "/EHsc /fp:except- /guard:cf- /permissive- /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor /Zc:templateScope /Zc:ternary /Zi /Zf /cgthreads8 /MP /W4"
+        "COMMONLIBSSE_COMPILER": "/EHsc /fp:except- /guard:cf- /GS- /permissive- /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor /Zc:templateScope /Zc:ternary /Zi /cgthreads8 /MP /W4"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
@@ -70,8 +70,8 @@
       "cmakeExecutable": "C:/Program Files/CMake/bin/",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
-        "COMPILER_FLAGS_RELWITHDEBINFO": "/O2 /Ob3 /fp:fast /GL /GR- /Gw /Gy- /Qpar /Qpar-report:2 /Zo /MD",
-        "LINKER_FLAGS_RELWITHDEBINFO": "/OPT:ICF=2,REF /CGTHREADS:8"
+        "COMPILER_FLAGS_RELWITHDEBINFO": "/O2 /Ob3 /fp:fast /GL /GR- /Gw /Gy- /Qpar /Qpar-report:2 /MD",
+        "LINKER_FLAGS_RELWITHDEBINFO": "/DEBUG:FULL /OPT:REF,ICF=2 /CGTHREADS:8"
       }
     },
     {
