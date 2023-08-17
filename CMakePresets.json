@@ -71,7 +71,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "COMPILER_FLAGS_RELWITHDEBINFO": "/O2 /Ob3 /fp:fast /GL /GR- /Gw /Gy- /Qpar /Qpar-report:2 /MD",
-        "LINKER_FLAGS_RELWITHDEBINFO": "/DEBUG:FULL /OPT:REF,ICF=2 /CGTHREADS:8"
+        "LINKER_FLAGS_RELWITHDEBINFO": "/DEBUG:FULL /LTCG:INCREMENTAL /OPT:REF,ICF=2 /CGTHREADS:8"
       }
     },
     {

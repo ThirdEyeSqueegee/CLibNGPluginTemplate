@@ -54,16 +54,23 @@ source_group(
 ########################################################################################################################
 ## Configure target DLL
 ########################################################################################################################
-find_package(CommonLibSSE REQUIRED)
+find_package(CommonLibSSE CONFIG REQUIRED)
 
 add_commonlibsse_plugin(${PROJECT_NAME} SOURCES ${headers} ${sources})
 add_library("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS "${PROJECT_NAME}")
+
+find_path(SIMPLEINI_INCLUDE_DIRS "SimpleIni.h")
+
+# target_link_libraries(${PROJECT_NAME}
+#         PRIVATE
+#         )
 
 target_include_directories(${PROJECT_NAME}
         PRIVATE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
         $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>
-        $<INSTALL_INTERFACE:src>)
+        $<INSTALL_INTERFACE:src>
+        ${SIMPLEINI_INCLUDE_DIRS})
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC
