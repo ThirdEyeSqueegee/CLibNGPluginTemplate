@@ -6,6 +6,7 @@ message("Using toolchain file ${CMAKE_TOOLCHAIN_FILE}.")
 ########################################################################################################################
 project(
         PluginName
+        AUTHOR ThirdEyeSqueegee
         VERSION 0.0.1
         LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 23)

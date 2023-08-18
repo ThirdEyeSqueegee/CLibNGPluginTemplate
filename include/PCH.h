@@ -119,23 +119,103 @@ namespace util {
     using SKSE::stl::report_and_fail;
 }
 
+template <class DerivedType>
 class Singleton {
-public:
+protected:
     constexpr Singleton() = default;
     constexpr ~Singleton() = default;
+
+public:
     constexpr Singleton(const Singleton&) = delete;
     constexpr Singleton(Singleton&&) = delete;
     constexpr Singleton& operator=(const Singleton&) = delete;
     constexpr Singleton& operator=(Singleton&&) = delete;
+
+    static DerivedType* GetSingleton() {
+        static DerivedType singleton;
+        return std::addressof(singleton);
+    }
 };
 
-template <class EventType>
+template <class DerivedType, class EventType>
 class EventSingleton : public RE::BSTEventSink<EventType> {
-public:
+protected:
     constexpr EventSingleton() = default;
     constexpr ~EventSingleton() override = default;
+
+public:
     constexpr EventSingleton(const EventSingleton&) = delete;
     constexpr EventSingleton(EventSingleton&&) = delete;
     constexpr EventSingleton& operator=(const EventSingleton&) = delete;
     constexpr EventSingleton& operator=(EventSingleton&&) = delete;
+
+    static DerivedType* GetSingleton() {
+        static DerivedType singleton;
+        return std::addressof(singleton);
+    }
+
+    static void Register() {
+        using eventsource_t = RE::BSTEventSource<EventType>;
+
+        auto name = std::string(typeid(EventType).name());
+        const std::regex p("struct |RE::|SKSE::");
+        name = std::regex_replace(name, p, "");
+
+        if constexpr (std::is_base_of_v<eventsource_t, RE::BSInputDeviceManager>) {
+            const auto manager = RE::BSInputDeviceManager::GetSingleton();
+            manager->AddEventSink(GetSingleton());
+            logger::info("Registered {} handler", name);
+            return;
+        } else if constexpr (std::is_base_of_v<eventsource_t, RE::UI>) {
+            const auto ui = RE::UI::GetSingleton();
+            ui->AddEventSink(GetSingleton());
+            logger::info("Registered {} handler", name);
+            return;
+        } else if constexpr (std::is_same_v<EventType, SKSE::ActionEvent>) {
+            SKSE::GetActionEventSource()->AddEventSink(GetSingleton());
+            logger::info("Registered {} handler", name);
+            return;
+        } else if constexpr (std::is_same_v<EventType, SKSE::CameraEvent>) {
+            SKSE::GetCameraEventSource()->AddEventSink(GetSingleton());
+            logger::info("Registered {} handler", name);
+            return;
+        } else if constexpr (std::is_same_v<EventType, SKSE::CrosshairRefEvent>) {
+            SKSE::GetCrosshairRefEventSource()->AddEventSink(GetSingleton());
+            logger::info("Registered {} handler", name);
+            return;
+        } else if constexpr (std::is_same_v<EventType, SKSE::ModCallbackEvent>) {
+            SKSE::GetModCallbackEventSource()->AddEventSink(GetSingleton());
+            logger::info("Registered {} handler", name);
+            return;
+        } else if constexpr (std::is_same_v<EventType, SKSE::NiNodeUpdateEvent>) {
+            SKSE::GetNiNodeUpdateEventSource()->AddEventSink(GetSingleton());
+            logger::info("Registered {} handler", name);
+            return;
+        } else if constexpr (std::is_base_of_v<eventsource_t, RE::ScriptEventSourceHolder>) {
+            const auto holder = RE::ScriptEventSourceHolder::GetSingleton();
+            holder->AddEventSink(GetSingleton());
+            logger::info("Registered {} handler", name);
+            return;
+        }
+        const auto plugin = SKSE::PluginDeclaration::GetSingleton();
+        const auto error_msg = fmt::format("{}: Failed to register {} handler", plugin->GetName(), name);
+        SKSE::stl::report_and_fail(error_msg);
+    }
 };
+
+namespace stl {
+    using namespace SKSE::stl;
+
+    template <class T>
+    void write_thunk_call(std::uintptr_t a_src) {
+        SKSE::AllocTrampoline(14);
+        auto& trampoline = SKSE::GetTrampoline();
+        T::func = trampoline.write_call<5>(a_src, T::thunk);
+    }
+
+    template <class F, class T>
+    void write_vfunc() {
+        REL::Relocation<std::uintptr_t> vtbl{ F::VTABLE[0] };
+        T::func = vtbl.write_vfunc(T::size, T::thunk);
+    }
+}

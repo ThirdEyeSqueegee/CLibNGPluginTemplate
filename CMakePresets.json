@@ -49,8 +49,13 @@
     {
       "name": "msvc",
       "hidden": true,
+      "generator": "Ninja Multi-Config",
+      "cmakeExecutable": "C:/Program Files/CMake/bin/",
       "environment": {
         "COMMONLIBSSE_COMPILER": "/EHsc /fp:except- /guard:cf- /GS- /permissive- /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor /Zc:templateScope /Zc:ternary /Zi /cgthreads8 /MP /W4"
+      },
+      "cacheVariables": {
+        "CMAKE_CONFIGURATION_TYPES": "RelWithDebInfo;Debug"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
@@ -65,11 +70,8 @@
       "inherits": [ "base", "vcpkg", "win32-unicode", "x64", "msvc" ],
       "displayName": "Release",
       "description": "Optimized release build.",
-      "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/release-msvc",
-      "cmakeExecutable": "C:/Program Files/CMake/bin/",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
         "COMPILER_FLAGS_RELWITHDEBINFO": "/O2 /Ob3 /fp:fast /GL /GR- /Gw /Gy- /Qpar /Qpar-report:2 /MD",
         "LINKER_FLAGS_RELWITHDEBINFO": "/DEBUG:FULL /LTCG:INCREMENTAL /OPT:REF,ICF=2 /CGTHREADS:8"
       }
@@ -79,11 +81,8 @@
       "inherits": [ "base", "vcpkg", "win32-unicode", "x64", "msvc" ],
       "displayName": "Debug",
       "description": "Debug build.",
-      "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/debug-msvc",
-      "cmakeExecutable": "C:/Program Files/CMake/bin/",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
         "COMPILER_FLAGS_DEBUG": "/Od /MDd",
         "LINKER_FLAGS_DEBUG": "/DEBUG:FULL /LTCG:INCREMENTAL /CGTHREADS:8"
       }
@@ -92,13 +91,13 @@
   "buildPresets": [
     {
       "name": "release-msvc",
-      "displayName": "Release (MSVC)",
+      "displayName": "1. Release (MSVC)",
       "configurePreset": "build-release-msvc",
       "description": "Optimized release build."
     },
     {
       "name": "debug-msvc",
-      "displayName": "Debug (MSVC)",
+      "displayName": "2. Debug (MSVC)",
       "configurePreset": "build-debug-msvc",
       "description": "Debug build."
     }

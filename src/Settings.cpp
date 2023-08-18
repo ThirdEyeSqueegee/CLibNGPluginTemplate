@@ -2,11 +2,6 @@
 
 #include "SimpleIni.h"
 
-Settings* Settings::GetSingleton() {
-    static Settings singleton;
-    return std::addressof(singleton);
-}
-
 void Settings::LoadSettings() {
     logger::info("Loading settings");
 
