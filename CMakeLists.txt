@@ -89,7 +89,6 @@ install(TARGETS ${PROJECT_NAME}
 ########################################################################################################################
 ## Automatic plugin deployment
 ########################################################################################################################
-# Automatic deployment to FOMOD directory.
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
     set(BUILD_NAME "Debug")
 else()

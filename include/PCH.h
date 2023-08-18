@@ -118,3 +118,24 @@ namespace logger = SKSE::log;
 namespace util {
     using SKSE::stl::report_and_fail;
 }
+
+class Singleton {
+public:
+    constexpr Singleton() = default;
+    constexpr ~Singleton() = default;
+    constexpr Singleton(const Singleton&) = delete;
+    constexpr Singleton(Singleton&&) = delete;
+    constexpr Singleton& operator=(const Singleton&) = delete;
+    constexpr Singleton& operator=(Singleton&&) = delete;
+};
+
+template <class EventType>
+class EventSingleton : public RE::BSTEventSink<EventType> {
+public:
+    constexpr EventSingleton() = default;
+    constexpr ~EventSingleton() override = default;
+    constexpr EventSingleton(const EventSingleton&) = delete;
+    constexpr EventSingleton(EventSingleton&&) = delete;
+    constexpr EventSingleton& operator=(const EventSingleton&) = delete;
+    constexpr EventSingleton& operator=(EventSingleton&&) = delete;
+};
