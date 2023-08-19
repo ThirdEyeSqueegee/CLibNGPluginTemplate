@@ -10,7 +10,8 @@
       "name": "base",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS": "$env{COMMONLIBSSE_COMPILER} $env{COMMONLIBSSE_PLATFORM} $env{COMMONLIBSSE_TEXT}"
+        "CMAKE_CXX_FLAGS": "$env{COMMONLIBSSE_COMPILER} $env{COMMONLIBSSE_PLATFORM} $env{COMMONLIBSSE_TEXT}",
+        "CMAKE_SHARED_LINKER_FLAGS": "$env{COMMONLIBSSE_LINKER}"
       }
     },
     {
@@ -49,13 +50,17 @@
     {
       "name": "msvc",
       "hidden": true,
-      "generator": "Ninja Multi-Config",
+      "generator": "Ninja",
       "cmakeExecutable": "C:/Program Files/CMake/bin/",
       "environment": {
-        "COMMONLIBSSE_COMPILER": "/EHsc /fp:except- /guard:cf- /GS- /permissive- /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor /Zc:templateScope /Zc:ternary /Zi /cgthreads8 /MP /W4"
+        "COMMONLIBSSE_COMPILER": "/cgthreads8 /diagnostics:caret /EHsc /fp:contract /fp:except- /guard:cf- /MP /permissive- /sdl /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:lambda /Zc:preprocessor /Zc:referenceBinding /Zc:rvalueCast /Zc:templateScope /Zc:ternary",
+        "COMMONLIBSSE_LINKER": "/CGTHREADS:8 /MACHINE:x64"
       },
       "cacheVariables": {
-        "CMAKE_CONFIGURATION_TYPES": "RelWithDebInfo;Debug"
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "/fp:fast /GL /GR- /Gw /O2 /Ob3 /Qpar /Qpar-report:2 /Qvec-report:2",
+        "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO": "/DEBUG:FULL /OPT:REF,ICF=4",
+        "CMAKE_CXX_FLAGS_DEBUG": "/Od /MDd",
+        "CMAKE_SHARED_LINKER_FLAGS_DEBUG": "/DEBUG:FULL /DEBUGTYPE:FIXUP"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
@@ -68,24 +73,22 @@
     {
       "name": "build-release-msvc",
       "inherits": [ "base", "vcpkg", "win32-unicode", "x64", "msvc" ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+      },
       "displayName": "Release",
       "description": "Optimized release build.",
-      "binaryDir": "${sourceDir}/build/release-msvc",
-      "cacheVariables": {
-        "COMPILER_FLAGS_RELWITHDEBINFO": "/O2 /Ob3 /fp:fast /GL /GR- /Gw /Gy- /Qpar /Qpar-report:2 /MD",
-        "LINKER_FLAGS_RELWITHDEBINFO": "/DEBUG:FULL /LTCG:INCREMENTAL /OPT:REF,ICF=2 /CGTHREADS:8"
-      }
+      "binaryDir": "${sourceDir}/build/release-msvc"
     },
     {
       "name": "build-debug-msvc",
       "inherits": [ "base", "vcpkg", "win32-unicode", "x64", "msvc" ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      },
       "displayName": "Debug",
       "description": "Debug build.",
-      "binaryDir": "${sourceDir}/build/debug-msvc",
-      "cacheVariables": {
-        "COMPILER_FLAGS_DEBUG": "/Od /MDd",
-        "LINKER_FLAGS_DEBUG": "/DEBUG:FULL /LTCG:INCREMENTAL /CGTHREADS:8"
-      }
+      "binaryDir": "${sourceDir}/build/debug-msvc"
     }
   ],
   "buildPresets": [
