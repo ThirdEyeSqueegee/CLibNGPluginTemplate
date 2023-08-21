@@ -3,14 +3,16 @@
 ## Setup
 
 - Clone the repository
-- Run `cd .\CLibNGPluginTemplate\`
-- Run `py .\project_setup.py\` (requires [Python 3.12+](https://www.python.org/download/pre-releases/))
-- Enter your project name (in CamelCase)
+- Optional:
+  - Run `cd .\CLibNGPluginTemplate\`
+  - Run `py .\project_setup.py\` (requires [Python 3.12+](https://www.python.org/download/pre-releases/))
+  - Enter your project name (in CamelCase)
+  - `project_setup.py` just does a few convenience things like setting the project name in `vcpkg.json` and `CMakeLists.txt`
 
 ## Building your project
 
 - Visual Studio should prompt you to generate a CMake cache. Click on `Generate` and wait
-- One the CMake cache is generated, hit `Ctrl+Shift+B` to build your project
+- One the CMake cache is generated, build your project
 - The .dll and .pdb files will be placed in `contrib\PluginRelease` or `contrib\PluginDebug` depending on your build configuration
 
 ## Build configs
