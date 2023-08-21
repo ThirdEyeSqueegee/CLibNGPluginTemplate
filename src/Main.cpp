@@ -1,3 +1,4 @@
+#include "Hooks.h"
 #include "Events.h"
 #include "Logging.h"
 #include "SKSE/Interfaces.h"
@@ -6,6 +7,7 @@
 void Listener(SKSE::MessagingInterface::Message* message) {
     if (message->type == SKSE::MessagingInterface::kDataLoaded) {
         Settings::LoadSettings();
+        Hooks::Install();
     }
 }
 

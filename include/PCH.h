@@ -128,8 +128,8 @@ protected:
 public:
     constexpr Singleton(const Singleton&) = delete;
     constexpr Singleton(Singleton&&) = delete;
-    constexpr Singleton& operator=(const Singleton&) = delete;
-    constexpr Singleton& operator=(Singleton&&) = delete;
+    constexpr auto operator=(const Singleton&) = delete;
+    constexpr auto operator=(Singleton&&) = delete;
 
     static DerivedType* GetSingleton() {
         static DerivedType singleton;
@@ -146,8 +146,8 @@ protected:
 public:
     constexpr EventSingleton(const EventSingleton&) = delete;
     constexpr EventSingleton(EventSingleton&&) = delete;
-    constexpr EventSingleton& operator=(const EventSingleton&) = delete;
-    constexpr EventSingleton& operator=(EventSingleton&&) = delete;
+    constexpr auto operator=(const EventSingleton&) = delete;
+    constexpr auto operator=(EventSingleton&&) = delete;
 
     static DerivedType* GetSingleton() {
         static DerivedType singleton;
@@ -158,7 +158,7 @@ public:
         using eventsource_t = RE::BSTEventSource<EventType>;
 
         auto name = std::string(typeid(EventType).name());
-        const std::regex p("struct |RE::|SKSE::");
+        const std::regex p("struct |RE::|SKSE::| * __ptr64");
         name = std::regex_replace(name, p, "");
 
         if constexpr (std::is_base_of_v<eventsource_t, RE::BSInputDeviceManager>) {
@@ -198,8 +198,7 @@ public:
             return;
         }
         const auto plugin = SKSE::PluginDeclaration::GetSingleton();
-        const auto error_msg = fmt::format("{}: Failed to register {} handler", plugin->GetName(), name);
-        SKSE::stl::report_and_fail(error_msg);
+        SKSE::stl::report_and_fail(fmt::format("{}: Failed to register {} handler", plugin->GetName(), name));
     }
 };
 
@@ -207,15 +206,21 @@ namespace stl {
     using namespace SKSE::stl;
 
     template <class T>
-    void write_thunk_call(std::uintptr_t a_src) {
+    void write_thunk_call() {
         SKSE::AllocTrampoline(14);
         auto& trampoline = SKSE::GetTrampoline();
-        T::func = trampoline.write_call<5>(a_src, T::thunk);
+        T::func = trampoline.write_call<5>(T::target.address(), T::thunk);
     }
 
     template <class F, class T>
     void write_vfunc() {
         REL::Relocation<std::uintptr_t> vtbl{ F::VTABLE[0] };
-        T::func = vtbl.write_vfunc(T::size, T::thunk);
+        T::func = vtbl.write_vfunc(T::idx, T::thunk);
+    }
+
+    template <class T>
+    void write_vfunc(const REL::VariantID variant_id) {
+        REL::Relocation<std::uintptr_t> vtbl{ variant_id };
+        T::func = vtbl.write_vfunc(T::idx, T::thunk);
     }
 }

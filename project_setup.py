@@ -39,28 +39,18 @@ os.remove(os.path.join(cwd, "README.md"))
 project_name = input("Enter project name: ")
 pattern = re.compile(r"(?<!^)(?=[A-Z])")
 
-with open(
-    os.path.join(cwd, "vcpkg-configuration.json"), "r", encoding="utf-8"
-) as vcpkg_config_file:
-    vcpkg_config = json.load(vcpkg_config_file)
-
-vcpkg_config["default-registry"]["baseline"] = vcpkg_sha
-vcpkg_config["registries"][0]["baseline"] = colorglass_sha
-
-with open(
-    os.path.join(cwd, "vcpkg-configuration.json"), "w", encoding="utf-8"
-) as vcpkg_config_file:
-    json.dump(vcpkg_config, vcpkg_config_file, indent=4)
-
 with open(os.path.join(cwd, "vcpkg.json"), "r", encoding="utf-8") as vcpkg_json_file:
-    vcpkg_json = vcpkg_json_file.read()
+    vcpkg_json = json.load(vcpkg_json_file)
 
 name = pattern.sub("-", project_name).lower()
-vcpkg_json = vcpkg_json.replace("plugin-name", name)
-vcpkg_json = vcpkg_json.replace("0.0.1", "1.0.0")
+vcpkg_json["name"] = name
+vcpkg_json["version-semver"] = "1.0.0"
+
+vcpkg_json["vcpkg-configuration"]["default-registry"]["baseline"] = vcpkg_sha
+vcpkg_json["vcpkg-configuration"]["registries"][0]["baseline"] = colorglass_sha
 
 with open(os.path.join(cwd, "vcpkg.json"), "w", encoding="utf-8") as vcpkg_json_file:
-    vcpkg_json_file.write(vcpkg_json)
+    json.dump(vcpkg_json, vcpkg_json_file, indent=2)
 
 with open(
     os.path.join(cwd, "CMakeLists.txt"), "r", encoding="utf-8"

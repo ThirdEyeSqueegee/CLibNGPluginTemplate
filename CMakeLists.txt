@@ -36,6 +36,7 @@ set(sources
         src/Main.cpp
         src/Events.cpp
         src/Settings.cpp
+        src/Hooks.cpp
 
         ${CMAKE_CURRENT_BINARY_DIR}/version.rc)
 
@@ -51,6 +52,7 @@ source_group(
 find_package(CommonLibSSE CONFIG REQUIRED)
 
 add_commonlibsse_plugin(${PROJECT_NAME} AUTHOR ThirdEyeSqueegee SOURCES ${headers} ${sources})
+
 add_library("${PROJECT_NAME}::${PROJECT_NAME}" ALIAS "${PROJECT_NAME}")
 
 find_path(SIMPLEINI_INCLUDE_DIRS "SimpleIni.h")
@@ -72,7 +74,8 @@ target_include_directories(${PROJECT_NAME}
 
 target_precompile_headers(${PROJECT_NAME}
         PRIVATE
-        include/PCH.h)
+        include/PCH.h
+        ${SIMPLEINI_INCLUDE_DIRS}/SimpleIni.h)
 
 install(DIRECTORY "${PUBLIC_HEADER_DIR}"
         DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}")

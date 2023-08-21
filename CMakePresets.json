@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "cmakeMinimumRequired": {
     "major": 3,
     "minor": 27,
@@ -58,9 +58,9 @@
       },
       "cacheVariables": {
         "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "/fp:fast /GL /GR- /Gw /O2 /Ob3 /Qpar /Qpar-report:2 /Qvec-report:2",
-        "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO": "/DEBUG:FULL /OPT:REF,ICF=4",
+        "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO": "/DEBUG:FULL /LTCG:INCREMENTAL /OPT:REF,ICF=4",
         "CMAKE_CXX_FLAGS_DEBUG": "/Od /MDd",
-        "CMAKE_SHARED_LINKER_FLAGS_DEBUG": "/DEBUG:FULL /DEBUGTYPE:FIXUP"
+        "CMAKE_SHARED_LINKER_FLAGS_DEBUG": "/DEBUG:FULL /LTCG:INCREMENTAL /DEBUGTYPE:FIXUP"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {

@@ -1,13 +1,29 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "plugin-name",
-  "version-string": "0.0.1",
+  "version-semver": "0.0.1",
+  "dependencies": [
+    "commonlibsse-ng",
+    "simpleini"
+  ],
   "license": "GPL-3.0-or-later",
-  "features": {
-    "plugin": {
-      "description": "Build the SKSE plugin.",
-      "dependencies": [ "commonlibsse-ng", "simpleini" ]
-    }
-  },
-  "default-features": [ "plugin" ]
+  "vcpkg-configuration": {
+    "default-registry": {
+      "kind": "git",
+      "repository": "https://github.com/microsoft/vcpkg",
+      "baseline": "c95000e1b5bb62884de08d5e952993c8bced9db6"
+    },
+    "registries": [
+      {
+        "kind": "git",
+        "repository": "https://gitlab.com/colorglass/vcpkg-colorglass",
+        "baseline": "6309841a1ce770409708a67a9ba5c26c537d2937",
+        "packages": [
+          "commonlibsse-ng",
+          "script-extender-common",
+          "skse"
+        ]
+      }
+    ]
+  }
 }
