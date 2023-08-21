@@ -4,7 +4,7 @@
 
 - Clone the repository
 - Run `cd .\CLibNGPluginTemplate\`
-- Run `py .\project_setup.py\`
+- Run `py .\project_setup.py\` (requires [Python 3.12+](https://www.python.org/download/pre-releases/))
 - Enter your project name (in CamelCase)
 
 ## Building your project
@@ -13,7 +13,7 @@
 - One the CMake cache is generated, hit `Ctrl+Shift+B` to build your project
 - The .dll and .pdb files will be placed in `contrib\PluginRelease` or `contrib\PluginDebug` depending on your build configuration
 
-### Build configs
+## Build configs
 
 - Two build configs are provided:
   - `Release`: Optimized release build, produces small and fast DLLs with associated PDBs
@@ -21,7 +21,7 @@
 
 ## Dependencies
 
-- [vcpkg v2023.07.21+](https://github.com/microsoft/vcpkg/releases)
+- [vcpkg v2023.08.09+](https://github.com/microsoft/vcpkg/releases)
   - Create a new Windows environment variable called `VCPKG_ROOT` which points to your vcpkg install directory
 - [CMake v3.27+](https://cmake.org/)
 - [LLVM v16.0.6+](https://github.com/llvm/llvm-project/releases)
