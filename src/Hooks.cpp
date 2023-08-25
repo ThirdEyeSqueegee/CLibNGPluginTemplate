@@ -6,7 +6,5 @@ namespace Hooks {
         logger::info("Installed main update hook");
     }
 
-    std::int32_t MainUpdate::thunk() {
-        return func();
-    }
+    std::int32_t MainUpdate::thunk() { return func(); }
 }

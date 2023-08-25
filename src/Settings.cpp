@@ -1,7 +1,5 @@
 #include "Settings.h"
 
-#include "SimpleIni.h"
-
 void Settings::LoadSettings() {
     logger::info("Loading settings");
 

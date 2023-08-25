@@ -4,7 +4,7 @@ AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
 AlignArrayOfStructures: Right
 AlignConsecutiveAssignments:
-  Enabled: false
+  Enabled: true
   AcrossEmptyLines: false
   AcrossComments: false
   AlignCompound: false
@@ -16,7 +16,7 @@ AlignConsecutiveBitFields:
   AlignCompound: false
   PadOperators: false
 AlignConsecutiveDeclarations:
-  Enabled: false
+  Enabled: true
   AcrossEmptyLines: false
   AcrossComments: false
   AlignCompound: false
@@ -36,7 +36,7 @@ AllowAllArgumentsOnNextLine: true
 AllowAllParametersOfDeclarationOnNextLine: true
 AllowShortBlocksOnASingleLine: Empty
 AllowShortCaseLabelsOnASingleLine: false
-AllowShortEnumsOnASingleLine: true
+AllowShortEnumsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: All
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLambdasOnASingleLine: All
