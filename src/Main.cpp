@@ -1,9 +1,8 @@
 #include "Events.h"
 #include "Hooks.h"
 #include "Logging.h"
-#include "Settings.h"
-
 #include "SKSE/Interfaces.h"
+#include "Settings.h"
 
 void Listener(SKSE::MessagingInterface::Message* message)
 {
