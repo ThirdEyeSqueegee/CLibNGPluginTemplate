@@ -1,0 +1,35 @@
+name: Test Build
+
+on:
+  repository_dispatch:
+    types: build-event
+  workflow_dispatch:
+
+env:
+  VCPKG_COMMIT_ID: 0a50c9623b797eb393ca852099bc3b776c34b532
+
+jobs:
+  test-build:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        preset:
+          - debug
+          - release
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get CMake
+        uses: lukka/get-cmake@latest
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11.1
+        with:
+          vcpkgGitCommitId: ${{ env.VCPKG_COMMIT_ID }}
+
+      - name: Run CMake
+        uses: lukka/run-cmake@v10.6
+        with:
+          configurePreset: build-${{ matrix.preset }}-msvc
+          buildPreset: ${{ matrix.preset }}-msvc

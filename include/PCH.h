@@ -1,102 +1,148 @@
 #pragma once
 
-#include <RE/Skyrim.h>
-#include <REL/Relocation.h>
-#include <SKSE/SKSE.h>
-#include <algorithm>
-#include <any>
-#include <array>
-#include <atomic>
-#include <barrier>
-#include <bit>
-#include <bitset>
-#include <cassert>
-#include <cctype>
-#include <cerrno>
-#include <cfenv>
-#include <cfloat>
-#include <charconv>
-#include <chrono>
-#include <cinttypes>
-#include <climits>
-#include <clocale>
-#include <cmath>
-#include <compare>
-#include <complex>
+/* +++++++++++++++++++++++++ C++23 Standard Library +++++++++++++++++++++++++ */
+
+// Concepts library
 #include <concepts>
-#include <condition_variable>
+
+// Utilities library
+#include <any>
+#include <bitset>
+#include <chrono>
+#include <compare>
 #include <csetjmp>
 #include <csignal>
 #include <cstdarg>
 #include <cstddef>
-#include <cstdint>
-#include <cstdio>
 #include <cstdlib>
-#include <cstring>
 #include <ctime>
+#include <expected>
+#include <functional>
+#include <initializer_list>
+#include <optional>
+#include <source_location>
+#include <tuple>
+#include <type_traits>
+#include <typeindex>
+#include <typeinfo>
+#include <utility>
+#include <variant>
+#include <version>
+
+// Dynamic memory management
+#include <memory>
+#include <memory_resource>
+#include <new>
+#include <scoped_allocator>
+
+// Numeric limits
+#include <cfloat>
+#include <cinttypes>
+#include <climits>
+#include <cstdint>
+#include <limits>
+#include <stdfloat>
+
+// Error handling
+#include <cassert>
+#include <cerrno>
+#include <exception>
+#include <stacktrace>
+#include <stdexcept>
+#include <system_error>
+
+// Strings library
+#include <cctype>
+#include <charconv>
+#include <cstring>
 #include <cuchar>
 #include <cwchar>
 #include <cwctype>
+#include <string>
+#include <string_view>
+
+// Containers library
+#include <array>
 #include <deque>
-#include <exception>
-#include <execution>
-#include <filesystem>
 #include <forward_list>
+#include <list>
+#include <map>
+#include <queue>
+#include <set>
+#include <span>
+#include <stack>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
+
+// Iterators library
+#include <iterator>
+
+// Ranges library
+#include <ranges>
+
+// Algorithms library
+#include <algorithm>
+#include <execution>
+
+// Numerics library
+#include <bit>
+#include <cfenv>
+#include <cmath>
+#include <complex>
+#include <numbers>
+#include <numeric>
+#include <random>
+#include <ratio>
+#include <valarray>
+
+// Localization library
+#include <clocale>
+#include <locale>
+
+// Input/output library
+#include <cstdio>
 #include <fstream>
-#include <functional>
-#include <future>
-#include <initializer_list>
 #include <iomanip>
 #include <ios>
 #include <iosfwd>
 #include <iostream>
 #include <istream>
-#include <iterator>
-#include <latch>
-#include <limits>
-#include <locale>
-#include <map>
-#include <memory>
-#include <memory_resource>
-#include <mutex>
-#include <new>
-#include <numbers>
-#include <numeric>
-#include <optional>
 #include <ostream>
-#include <queue>
-#include <random>
-#include <ranges>
-#include <ratio>
-#include <regex>
-#include <scoped_allocator>
-#include <semaphore>
-#include <set>
-#include <shared_mutex>
-#include <source_location>
-#include <span>
+#include <print>
+#include <spanstream>
 #include <sstream>
-#include <stack>
-#include <stdexcept>
 #include <streambuf>
-#include <string>
-#include <string_view>
+#include <strstream>
 #include <syncstream>
-#include <system_error>
+
+// Filesystem library
+#include <filesystem>
+
+// Regular Expressions library
+#include <regex>
+
+// Atomic Operations library
+#include <atomic>
+
+// Thread support library
+#include <barrier>
+#include <condition_variable>
+#include <future>
+#include <latch>
+#include <mutex>
+#include <semaphore>
+#include <shared_mutex>
+#include <stop_token>
 #include <thread>
-#include <tuple>
-#include <type_traits>
-#include <typeindex>
-#include <typeinfo>
-#include <unordered_map>
-#include <unordered_set>
-#include <utility>
-#include <valarray>
-#include <variant>
-#include <vector>
-#include <version>
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 // clang-format off
+#include <RE/Skyrim.h>
+#include <REL/Relocation.h>
+#include <SKSE/SKSE.h>
+
 #include <ShlObj_core.h>
 #include <Psapi.h>
 #include <Windows.h>
@@ -123,7 +169,7 @@ public:
     constexpr auto operator=(const Singleton&) = delete;
     constexpr auto operator=(Singleton&&)      = delete;
 
-    static constexpr T* GetSingleton() noexcept
+    [[nodiscard]] static constexpr T* GetSingleton() noexcept
     {
         static T singleton;
         return std::addressof(singleton);
@@ -143,7 +189,7 @@ public:
     constexpr auto operator=(const EventSingleton&) = delete;
     constexpr auto operator=(EventSingleton&&)      = delete;
 
-    static constexpr TDerived* GetSingleton() noexcept
+    [[nodiscard]] static constexpr TDerived* GetSingleton() noexcept
     {
         static TDerived singleton;
         return std::addressof(singleton);
@@ -218,7 +264,7 @@ namespace stl
     using namespace SKSE::stl;
 
     template <typename T>
-    constexpr void write_thunk_call() noexcept
+    constexpr auto write_thunk_call() noexcept
     {
         SKSE::AllocTrampoline(14);
         auto& trampoline{ SKSE::GetTrampoline() };
@@ -226,14 +272,14 @@ namespace stl
     }
 
     template <typename TDest, typename TSource>
-    constexpr void write_vfunc() noexcept
+    constexpr auto write_vfunc() noexcept
     {
         REL::Relocation<std::uintptr_t> vtbl{ TDest::VTABLE[0] };
         TSource::func = vtbl.write_vfunc(TSource::idx, TSource::Thunk);
     }
 
     template <typename T>
-    constexpr void write_vfunc(const REL::VariantID variant_id) noexcept
+    constexpr auto write_vfunc(const REL::VariantID variant_id) noexcept
     {
         REL::Relocation<std::uintptr_t> vtbl{ variant_id };
         T::func = vtbl.write_vfunc(T::idx, T::Thunk);

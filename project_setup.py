@@ -37,6 +37,7 @@ if os.path.isdir(os.path.join(cwd, ".vs")):
 os.remove(os.path.join(cwd, "README.md"))
 
 project_name = input("Enter project name: ")
+author = input("Enter author: ")
 pattern = re.compile(r"(?<!^)(?=[A-Z])")
 
 with open(os.path.join(cwd, "vcpkg.json"), "r", encoding="utf-8") as vcpkg_json_file:
@@ -58,6 +59,7 @@ with open(
     cmakelists = cmakelists_file.read()
 
 cmakelists = cmakelists.replace("PluginName", project_name)
+cmakelists = cmakelists.replace("AuthorName", author)
 cmakelists = cmakelists.replace("0.0.1", "1.0.0")
 
 with open(
@@ -66,18 +68,18 @@ with open(
     cmakelists_file.write(cmakelists)
 
 os.rename(
-    os.path.join(cwd, "contrib\\Config\\PluginName.ini"),
-    os.path.join(cwd, f"contrib\\Config\\{project_name}.ini"),
+    os.path.join(cwd, "contrib", "Config", "PluginName.ini"),
+    os.path.join(cwd, "contrib", "Config", f"{project_name}.ini"),
 )
 
 with open(
-    os.path.join(cwd, "src\\Settings.cpp"), "r", encoding="utf-8"
+    os.path.join(cwd, "src", "Settings.cpp"), "r", encoding="utf-8"
 ) as settings_cpp_file:
     settings_cpp = settings_cpp_file.read()
 
 settings_cpp = settings_cpp.replace("PluginName.ini", f"{project_name}.ini")
 
 with open(
-    os.path.join(cwd, "src\\Settings.cpp"), "w", encoding="utf-8"
+    os.path.join(cwd, "src", "Settings.cpp"), "w", encoding="utf-8"
 ) as settings_cpp_file:
     settings_cpp_file.write(settings_cpp)

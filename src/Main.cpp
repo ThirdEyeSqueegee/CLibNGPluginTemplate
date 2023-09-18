@@ -1,10 +1,11 @@
 #include "Events.h"
 #include "Hooks.h"
 #include "Logging.h"
-#include "SKSE/Interfaces.h"
 #include "Settings.h"
 
-void Listener(SKSE::MessagingInterface::Message* message)
+#include "SKSE/Interfaces.h"
+
+void Listener(SKSE::MessagingInterface::Message* message) noexcept
 {
     if (message->type <=> SKSE::MessagingInterface::kDataLoaded == 0)
     {

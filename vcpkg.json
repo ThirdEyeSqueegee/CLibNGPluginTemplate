@@ -8,14 +8,14 @@
     "default-registry": {
       "kind": "git",
       "repository": "https://github.com/microsoft/vcpkg",
-      "baseline": "da21e45c9ae689f63aa27f3a4ee0e64fe6b16494"
+      "baseline": "0a50c9623b797eb393ca852099bc3b776c34b532"
     },
     "registries": [
       {
         "kind": "git",
         "repository": "https://gitlab.com/colorglass/vcpkg-colorglass",
         "baseline": "6309841a1ce770409708a67a9ba5c26c537d2937",
-        "packages": ["commonlibsse-ng", "script-extender-common", "skse"]
+        "packages": ["commonlibsse-ng"]
       }
     ]
   }
