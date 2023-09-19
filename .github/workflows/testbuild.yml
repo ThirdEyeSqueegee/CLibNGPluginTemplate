@@ -1,16 +1,18 @@
 name: Test Build
 
 on:
-  repository_dispatch:
-    types: build-event
+  workflow_run:
+    workflows: clang-format
+    types: completed
   workflow_dispatch:
 
 env:
-  VCPKG_COMMIT_ID: 0a50c9623b797eb393ca852099bc3b776c34b532
+  VCPKG_COMMIT_ID: e44d60e6bf0964064bf69667cd9f3e91dc383c7c
 
 jobs:
   test-build:
     runs-on: windows-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     strategy:
       matrix:
         preset:
