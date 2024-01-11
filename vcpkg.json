@@ -2,12 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "plugin-name",
   "version-semver": "0.0.1",
-  "dependencies": [
-    "fmt",
-    "spdlog",
-    "rapidcsv",
-    "simpleini"
-  ],
+  "dependencies": ["fmt", "spdlog", "rapidcsv", "simpleini"],
   "license": "GPL-3.0-or-later",
   "vcpkg-configuration": {
     "default-registry": {
