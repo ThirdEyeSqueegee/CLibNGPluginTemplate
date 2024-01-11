@@ -2,7 +2,7 @@
   "version": 6,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 27,
+    "minor": 28,
     "patch": 0
   },
   "configurePresets": [
@@ -11,7 +11,7 @@
       "hidden": true,
       "cacheVariables": {
         "CMAKE_CXX_FLAGS": "$env{COMMONLIBSSE_COMPILER} $env{COMMONLIBSSE_PLATFORM} $env{COMMONLIBSSE_TEXT} $penv{CXXFLAGS}",
-        "CMAKE_SHARED_LINKER_FLAGS": "$env{COMMONLIBSSE_LINKER}",
+        "CMAKE_SHARED_LINKER_FLAGS": "$env{COMMONLIBSSE_LINKER} $penv{SHARED_LINKER_FLAGS}",
         "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
       }
     },
@@ -65,8 +65,7 @@
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
           "intelliSenseMode": "windows-msvc-x64",
-          "enableMicrosoftCodeAnalysis": true,
-          "enableClangTidyCodeAnalysis": true
+          "enableMicrosoftCodeAnalysis": true
         }
       }
     },

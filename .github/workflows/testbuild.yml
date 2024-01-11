@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  VCPKG_COMMIT_ID: e44d60e6bf0964064bf69667cd9f3e91dc383c7c
+  VCPKG_COMMIT_ID: 83444c57754d01d584a4a371a070c5147e8a5aae
 
 jobs:
   test-build:
@@ -26,12 +26,12 @@ jobs:
         uses: lukka/get-cmake@latest
 
       - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11.1
+        uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: ${{ env.VCPKG_COMMIT_ID }}
 
       - name: Run CMake
-        uses: lukka/run-cmake@v10.6
+        uses: lukka/run-cmake@v10
         with:
           configurePreset: build-${{ matrix.preset }}-msvc
           buildPreset: ${{ matrix.preset }}-msvc

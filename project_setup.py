@@ -8,17 +8,12 @@ import json
 cwd = os.path.dirname(os.path.abspath(__file__))
 
 vcpkg_repo = "https://github.com/microsoft/vcpkg"
-colorglass_repo = "https://gitlab.com/colorglass/vcpkg-colorglass.git"
-process1 = subprocess.Popen(["git", "ls-remote", vcpkg_repo], stdout=subprocess.PIPE)
-process2 = subprocess.Popen(
-    ["git", "ls-remote", colorglass_repo], stdout=subprocess.PIPE
-)
-stdout, stderr = process1.communicate()
-sha = re.split(r"\t+", stdout.decode("ascii"))[0]
-vcpkg_sha = sha
-stdout, stderr = process2.communicate()
-sha = re.split(r"\t+", stdout.decode("ascii"))[0]
-colorglass_sha = sha
+stdout, stderr = subprocess.Popen(
+    ["git", "ls-remote", vcpkg_repo], stdout=subprocess.PIPE
+).communicate()
+vcpkg_sha = re.split(r"\t+", stdout.decode("ascii"))[0]
+
+subprocess.Popen(["git", "submodule", "update", "--init"], cwd=cwd).communicate()
 
 
 def onexc(func, path, exc_info):
@@ -31,8 +26,6 @@ def onexc(func, path, exc_info):
 
 if os.path.isdir(os.path.join(cwd, ".git")):
     shutil.rmtree(os.path.join(cwd, ".git"), onexc=onexc)
-if os.path.isdir(os.path.join(cwd, ".vs")):
-    shutil.rmtree(os.path.join(cwd, ".vs"), onexc=onexc)
 
 os.remove(os.path.join(cwd, "README.md"))
 
@@ -48,7 +41,6 @@ vcpkg_json["name"] = name
 vcpkg_json["version-semver"] = "1.0.0"
 
 vcpkg_json["vcpkg-configuration"]["default-registry"]["baseline"] = vcpkg_sha
-vcpkg_json["vcpkg-configuration"]["registries"][0]["baseline"] = colorglass_sha
 
 with open(os.path.join(cwd, "vcpkg.json"), "w", encoding="utf-8") as vcpkg_json_file:
     json.dump(vcpkg_json, vcpkg_json_file, indent=2)
