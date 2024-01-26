@@ -11,8 +11,7 @@ void Settings::LoadSettings() noexcept
 
     debug_logging = ini.GetBoolValue("Log", "Debug");
 
-    if (debug_logging)
-    {
+    if (debug_logging) {
         spdlog::get("Global")->set_level(spdlog::level::level_enum::debug);
         logger::debug("Debug logging enabled");
     }

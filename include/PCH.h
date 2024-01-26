@@ -203,52 +203,44 @@ public:
         const std::regex      p{ "struct |RE::|SKSE::| * __ptr64" };
         const auto            name{ std::regex_replace(dirty_name, p, "") };
 
-        if constexpr (std::is_base_of_v<TEventSource, RE::BSInputDeviceManager>)
-        {
+        if constexpr (std::is_base_of_v<TEventSource, RE::BSInputDeviceManager>) {
             const auto manager{ RE::BSInputDeviceManager::GetSingleton() };
             manager->AddEventSink(GetSingleton());
             logger::info("Registered {} handler", name);
             return;
         }
-        else if constexpr (std::is_base_of_v<TEventSource, RE::UI>)
-        {
+        else if constexpr (std::is_base_of_v<TEventSource, RE::UI>) {
             const auto ui{ RE::UI::GetSingleton() };
             ui->AddEventSink(GetSingleton());
             logger::info("Registered {} handler", name);
             return;
         }
-        else if constexpr (std::is_same_v<TEvent, SKSE::ActionEvent>)
-        {
+        else if constexpr (std::is_same_v<TEvent, SKSE::ActionEvent>) {
             SKSE::GetActionEventSource()->AddEventSink(GetSingleton());
             logger::info("Registered {} handler", name);
             return;
         }
-        else if constexpr (std::is_same_v<TEvent, SKSE::CameraEvent>)
-        {
+        else if constexpr (std::is_same_v<TEvent, SKSE::CameraEvent>) {
             SKSE::GetCameraEventSource()->AddEventSink(GetSingleton());
             logger::info("Registered {} handler", name);
             return;
         }
-        else if constexpr (std::is_same_v<TEvent, SKSE::CrosshairRefEvent>)
-        {
+        else if constexpr (std::is_same_v<TEvent, SKSE::CrosshairRefEvent>) {
             SKSE::GetCrosshairRefEventSource()->AddEventSink(GetSingleton());
             logger::info("Registered {} handler", name);
             return;
         }
-        else if constexpr (std::is_same_v<TEvent, SKSE::ModCallbackEvent>)
-        {
+        else if constexpr (std::is_same_v<TEvent, SKSE::ModCallbackEvent>) {
             SKSE::GetModCallbackEventSource()->AddEventSink(GetSingleton());
             logger::info("Registered {} handler", name);
             return;
         }
-        else if constexpr (std::is_same_v<TEvent, SKSE::NiNodeUpdateEvent>)
-        {
+        else if constexpr (std::is_same_v<TEvent, SKSE::NiNodeUpdateEvent>) {
             SKSE::GetNiNodeUpdateEventSource()->AddEventSink(GetSingleton());
             logger::info("Registered {} handler", name);
             return;
         }
-        else if constexpr (std::is_base_of_v<TEventSource, RE::ScriptEventSourceHolder>)
-        {
+        else if constexpr (std::is_base_of_v<TEventSource, RE::ScriptEventSourceHolder>) {
             const auto holder{ RE::ScriptEventSourceHolder::GetSingleton() };
             holder->AddEventSink(GetSingleton());
             logger::info("Registered {} handler", name);
