@@ -52,7 +52,7 @@
       "name": "msvc",
       "hidden": true,
       "generator": "Ninja",
-      "cmakeExecutable": "C:/Program Files/CMake/bin/",
+      "cmakeExecutable": "C:/Program Files/CMake/bin/cmake.exe",
       "environment": {
         "COMMONLIBSSE_COMPILER": "/cgthreads8 /diagnostics:caret /EHsc /fp:contract /fp:except- /guard:cf- /MP /permissive- /sdl /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:lambda /Zc:preprocessor /Zc:referenceBinding /Zc:rvalueCast /Zc:templateScope /Zc:ternary",
         "COMMONLIBSSE_LINKER": "/CGTHREADS:8 /MACHINE:x64 /DEBUG:FULL"
