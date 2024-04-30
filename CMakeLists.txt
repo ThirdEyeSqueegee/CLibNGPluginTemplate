@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.29)
 message("Using toolchain file ${CMAKE_TOOLCHAIN_FILE}.")
 
 project(
@@ -64,6 +64,7 @@ find_path(SIMPLEINI_INCLUDE_DIRS "SimpleIni.h")
 # PRIVATE
 # SomeLibrary::SomeLibrary
 # )
+
 target_include_directories(
   ${PROJECT_NAME}
   PRIVATE

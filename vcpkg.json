@@ -2,13 +2,13 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "plugin-name",
   "version-semver": "0.0.1",
-  "dependencies": ["fmt", "spdlog", "rapidcsv", "simpleini"],
+  "dependencies": ["fmt", "spdlog", "rapidcsv", "simpleini", "directxtk", "openvr"],
   "license": "GPL-3.0-or-later",
   "vcpkg-configuration": {
     "default-registry": {
       "kind": "git",
       "repository": "https://github.com/microsoft/vcpkg",
-      "baseline": "83444c57754d01d584a4a371a070c5147e8a5aae"
+      "baseline": "c591ac6466a55ef0a05a3d56bb1489ca36e50102"
     }
   }
 }

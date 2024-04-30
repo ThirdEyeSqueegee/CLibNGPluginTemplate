@@ -199,9 +199,9 @@ public:
     {
         using TEventSource = RE::BSTEventSource<TEvent>;
 
-        constexpr std::string dirty_name{ typeid(TEvent).name() };
-        const std::regex      p{ "struct |RE::|SKSE::| * __ptr64" };
-        const auto            name{ std::regex_replace(dirty_name, p, "") };
+        const std::string dirty_name{ typeid(TEvent).name() };
+        const std::regex  p{ "struct |RE::|SKSE::| * __ptr64" };
+        const auto        name{ std::regex_replace(dirty_name, p, "") };
 
         if constexpr (std::is_base_of_v<TEventSource, RE::BSInputDeviceManager>) {
             const auto manager{ RE::BSInputDeviceManager::GetSingleton() };
