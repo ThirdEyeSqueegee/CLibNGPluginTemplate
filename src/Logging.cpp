@@ -3,16 +3,19 @@
 void InitializeLogging() noexcept
 {
     auto path{ SKSE::log::log_directory() };
-    if (!path)
+    if (!path) {
         stl::report_and_fail("Unable to lookup SKSE logs directory.");
+    }
     *path /= SKSE::PluginDeclaration::GetSingleton()->GetName();
     *path += L".log";
 
     std::shared_ptr<spdlog::logger> log;
-    if (IsDebuggerPresent())
+    if (IsDebuggerPresent()) {
         log = std::make_shared<spdlog::logger>("Global", std::make_shared<spdlog::sinks::msvc_sink_mt>());
-    else
+    }
+    else {
         log = std::make_shared<spdlog::logger>("Global", std::make_shared<spdlog::sinks::basic_file_sink_mt>(path->string(), true));
+    }
 
     log->set_level(spdlog::level::info);
     log->flush_on(spdlog::level::trace);

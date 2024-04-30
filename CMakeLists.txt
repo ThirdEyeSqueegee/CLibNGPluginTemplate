@@ -64,7 +64,6 @@ find_path(SIMPLEINI_INCLUDE_DIRS "SimpleIni.h")
 # PRIVATE
 # SomeLibrary::SomeLibrary
 # )
-
 target_include_directories(
   ${PROJECT_NAME}
   PRIVATE

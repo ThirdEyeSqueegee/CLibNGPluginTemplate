@@ -24,10 +24,12 @@ SKSEPluginLoad(const SKSE::LoadInterface* skse)
 
     Init(skse);
 
-    if (const auto messaging{ SKSE::GetMessagingInterface() }; !messaging->RegisterListener(Listener))
+    if (const auto messaging{ SKSE::GetMessagingInterface() }; !messaging->RegisterListener(Listener)) {
         return false;
+    }
 
     logger::info("{} has finished loading.", plugin->GetName());
+    logger::info("");
 
     return true;
 }

@@ -19,4 +19,5 @@ void Settings::LoadSettings() noexcept
     // Load settings
 
     logger::info("Loaded settings");
+    logger::info("");
 }
