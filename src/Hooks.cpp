@@ -8,7 +8,7 @@ namespace Hooks
         logger::info("Installed main update hook");
     }
 
-    std::int32_t MainUpdate::Thunk()
+    std::int32_t MainUpdate::Thunk() noexcept
     {
         return func();
     }

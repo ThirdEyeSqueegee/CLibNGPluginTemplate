@@ -1,4 +1,5 @@
 build
 *ReSharper*
 .vs
+.idea
 contrib/Plugin*

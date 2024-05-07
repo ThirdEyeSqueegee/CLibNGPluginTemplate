@@ -92,11 +92,11 @@ install(
   DESTINATION ${CMAKE_INSTALL_LIBDIR}
 )
 
-if(CMAKE_BUILD_TYPE STREQUAL Debug)
+if (CMAKE_BUILD_TYPE STREQUAL Debug)
   set(BUILD_NAME Debug)
-else()
+else ()
   set(BUILD_NAME Release)
-endif()
+endif ()
 
 add_custom_command(
   TARGET ${PROJECT_NAME}

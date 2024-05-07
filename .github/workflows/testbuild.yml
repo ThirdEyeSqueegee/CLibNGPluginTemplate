@@ -1,18 +1,20 @@
 name: Test Build
 
 on:
-  workflow_run:
-    workflows: clang-format
-    types: completed
+  push:
+    branches: main
+    paths:
+      - "**.h"
+      - "**.cpp"
+      - "**.yml"
   workflow_dispatch:
 
 env:
-  VCPKG_COMMIT_ID: 5786fcb0cb5eb08d1931a230dad9701e7a6c37f0
+  VCPKG_COMMIT_ID: 28b1cf627c0570b3e094192df2fce31a3a2bc1d3
 
 jobs:
   test-build:
     runs-on: windows-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     strategy:
       matrix:
         preset:
@@ -29,6 +31,9 @@ jobs:
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: ${{ env.VCPKG_COMMIT_ID }}
+
+      - name: Initialize submodules
+        run: git submodule update --init --recursive
 
       - name: Run CMake
         uses: lukka/run-cmake@v10
