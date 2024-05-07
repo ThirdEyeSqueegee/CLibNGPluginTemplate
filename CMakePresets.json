@@ -10,8 +10,8 @@
       "name": "base",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS": "$env{COMMONLIBSSE_COMPILER} $env{COMMONLIBSSE_PLATFORM} $env{COMMONLIBSSE_TEXT} $penv{CXXFLAGS}",
-        "CMAKE_SHARED_LINKER_FLAGS": "$env{COMMONLIBSSE_LINKER} $penv{SHARED_LINKER_FLAGS}",
+        "CMAKE_CXX_FLAGS": "$penv{CXXFLAGS} $env{COMMONLIBSSE_COMPILER} $env{COMMONLIBSSE_PLATFORM} $env{COMMONLIBSSE_TEXT}",
+        "CMAKE_SHARED_LINKER_FLAGS": "$penv{SHARED_LINKER_FLAGS} $env{COMMONLIBSSE_LINKER}",
         "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
       }
     },
@@ -54,7 +54,7 @@
       "generator": "Ninja",
       "cmakeExecutable": "C:/Program Files/CMake/bin/cmake.exe",
       "environment": {
-        "COMMONLIBSSE_COMPILER": "/cgthreads8 /diagnostics:caret /EHsc /fp:contract /fp:except- /guard:cf- /MP /permissive- /sdl /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:lambda /Zc:preprocessor /Zc:referenceBinding /Zc:rvalueCast /Zc:templateScope /Zc:ternary",
+        "COMMONLIBSSE_COMPILER": "/cgthreads8 /diagnostics:caret /EHsc /fp:contract /fp:except- /guard:cf- /MP /sdl /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor /Zc:templateScope",
         "COMMONLIBSSE_LINKER": "/CGTHREADS:8 /MACHINE:x64 /DEBUG:FULL"
       },
       "cacheVariables": {
