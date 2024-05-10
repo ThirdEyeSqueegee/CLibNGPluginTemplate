@@ -43,6 +43,10 @@ cmakelists = cmakelists.replace("AuthorName", author)
 cmakelists = cmakelists.replace("0.0.1", "1.0.0")
 
 if from_path == "" or from_path.lower() == "y":
+    cmakelists = cmakelists.replace(
+        "add_subdirectory(extern/CommonLibSSE-NG)",
+        "add_subdirectory($ENV{CommonLibSSEPath} CommonLibSSE-NG)",
+    )
     cmakelists = cmakelists.replace("extern/CommonLibSSE-NG", "$ENV{CommonLibSSEPath}")
 
 with open(
