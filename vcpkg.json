@@ -3,12 +3,6 @@
   "name": "plugin-name",
   "version-semver": "0.0.1",
   "builtin-baseline": "cbf4a6641528cee6f172328984576f51698de726",
-  "dependencies": [
-    "fmt",
-    "spdlog",
-    "rapidcsv",
-    "simpleini",
-    "directxtk"
-  ],
+  "dependencies": ["fmt", "spdlog", "rapidcsv", "simpleini", "directxtk"],
   "license": "GPL-3.0-or-later"
 }
