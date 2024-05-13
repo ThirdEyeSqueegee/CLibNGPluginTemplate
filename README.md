@@ -1,4 +1,4 @@
-# CommonLibSSE NG Plugin Template
+# CommonLibSSE-NG Plugin Template
 
 ## Setup
 
@@ -7,30 +7,27 @@
   - Run `cd .\CLibNGPluginTemplate\`
   - Run `py .\project_setup.py\` (requires [Python 3.12+](https://www.python.org/download/pre-releases/))
   - Enter your project name (in CamelCase)
+  - Select how you want to fetch CommonLibSSE-NG:
+    - Local instance (default): Use CommonLibSSE-NG from the path defined in the `CommonLibSSEPath` environment variable
+    - Submodule: Use CommonLibSSE-NG as a git submodule
   - `project_setup.py` just does a few convenience things like setting the project name in `vcpkg.json` and `CMakeLists.txt`
 
 ## Building your project
 
-- Visual Studio should prompt you to generate a CMake cache. Click on `Generate` and wait
-- One the CMake cache is generated, build your project
-- The .dll and .pdb files will be placed in `contrib\PluginRelease` or `contrib\PluginDebug` depending on your build configuration
+- Select one of the CMake presets (release or debug), configure, and build.
+- The .dll and .pdb files will be placed in `contrib\PluginRelease` or `contrib\PluginDebug` depending on your selected preset
 
-## Build configs
-
-- Two build configs are provided:
-  - `Release`: Optimized release build, produces small and fast DLLs with associated PDBs
-  - `Debug`: Debug build, produces DLLs and PDBs with full debug info, allowing the use of an interactive debugger
-
-## Dependencies
+## Requirements
 
 - [vcpkg](https://github.com/microsoft/vcpkg)
-  - Create a new Windows environment variable called `VCPKG_ROOT` which points to your vcpkg install directory
+  - Create a new environment variable called `VCPKG_ROOT` which points to your vcpkg install directory
 - [CMake](https://cmake.org/)
 - [LLVM](https://github.com/llvm/llvm-project/releases)
-- Visual Studio 2022 with C++ workload
+- Visual Studio 2022 build tools
+- Optional: If using a common instance of CommonLibSSE-NG, create a new environment variable called `CommonLibSSEPath` that points to the instance
 
 ## Resources
 
 - [Address Library Database](https://github.com/meh321/AddressLibraryDatabase)
-- [Address Library Manager](https://github.com/meh321/AddressLibraryManager/releases)
+- [Address Library Manager](https://github.com/meh321/AddressLibraryManager)
 - [Steamless](https://github.com/atom0s/Steamless/releases)
