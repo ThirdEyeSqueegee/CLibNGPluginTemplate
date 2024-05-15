@@ -2,9 +2,23 @@ import os
 import re
 import subprocess
 import json
+import shutil
+import stat
 
 cwd = os.path.dirname(os.path.abspath(__file__))
 
+
+def onexc(func, path, exc_info):
+    if not os.access(path, os.W_OK):
+        os.chmod(path, stat.S_IWUSR)
+        func(path)
+    else:
+        raise
+
+
+if os.path.isdir(os.path.join(cwd, ".git")):
+    shutil.rmtree(os.path.join(cwd, ".git"), onexc=onexc)
+    subprocess.Popen(["git", "init"]).communicate()
 
 os.remove(os.path.join(cwd, "README.md"))
 
