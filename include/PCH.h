@@ -255,25 +255,62 @@ namespace stl
 {
     using namespace SKSE::stl;
 
-    template <typename T>
-    constexpr auto write_thunk_call() noexcept
+    template <typename T, std::size_t Size = 5>
+    constexpr void write_thunk_call(const std::uintptr_t a_address) noexcept
     {
         SKSE::AllocTrampoline(14);
         auto& trampoline{ SKSE::GetTrampoline() };
-        T::func = trampoline.write_call<5>(T::address, T::Thunk);
+        T::func = trampoline.write_call<Size>(a_address, T::Thunk);
     }
 
-    template <typename TDest, typename TSource>
-    constexpr auto write_vfunc() noexcept
+    template <typename T, std::size_t Size = 5>
+    constexpr void write_thunk_call() noexcept
     {
-        REL::Relocation<std::uintptr_t> vtbl{ TDest::VTABLE[0] };
-        TSource::func = vtbl.write_vfunc(TSource::idx, TSource::Thunk);
+        write_thunk_call<T, Size>(T::address);
     }
 
     template <typename T>
     constexpr auto write_vfunc(const REL::VariantID variant_id) noexcept
     {
-        REL::Relocation<std::uintptr_t> vtbl{ variant_id };
+        REL::Relocation vtbl{ variant_id };
         T::func = vtbl.write_vfunc(T::idx, T::Thunk);
+    }
+
+    template <typename TDest, typename TSource>
+    constexpr void write_vfunc(const std::size_t a_vtableIdx = 0) noexcept
+    {
+        write_vfunc<TSource>(TDest::VTABLE[a_vtableIdx]);
+    }
+
+    template <typename T, std::size_t Size = 5>
+    constexpr void write_thunk_jump(const std::uintptr_t a_src) noexcept
+    {
+        SKSE::AllocTrampoline(14);
+        auto& trampoline{ SKSE::GetTrampoline() };
+        T::func = trampoline.write_branch<Size>(a_src, T::Thunk);
+    }
+
+    namespace detail
+    {
+        template <typename>
+        struct is_chrono_duration : std::false_type
+        {
+        };
+
+        template <typename Rep, typename Duration>
+        struct is_chrono_duration<std::chrono::duration<Rep, Duration>> : std::true_type
+        {
+        };
+
+        template <typename T>
+        concept is_duration = is_chrono_duration<T>::value;
+    } // namespace detail
+
+    void add_thread_task(const std::function<void()>& a_fn, const detail::is_duration auto a_wait_for = 0ms) noexcept
+    {
+        std::jthread([=] {
+            std::this_thread::sleep_for(a_wait_for);
+            SKSE::GetTaskInterface()->AddTask(a_fn);
+        }).detach();
     }
 } // namespace stl

@@ -56,12 +56,12 @@ cmakelists = cmakelists.replace("PluginName", project_name)
 cmakelists = cmakelists.replace("AuthorName", author)
 cmakelists = cmakelists.replace("0.0.1", "1.0.0")
 
-if from_path == "" or from_path.lower() == "y":
+if from_path.lower() == "n":
     cmakelists = cmakelists.replace(
-        "add_subdirectory(extern/CommonLibSSE-NG)",
         "add_subdirectory($ENV{CommonLibSSEPath} CommonLibSSE-NG)",
+        "add_subdirectory(extern/CommonLibSSE-NG)",
     )
-    cmakelists = cmakelists.replace("extern/CommonLibSSE-NG", "$ENV{CommonLibSSEPath}")
+    cmakelists = cmakelists.replace("$ENV{CommonLibSSEPath}", "extern/CommonLibSSE-NG")
 
 with open(
     os.path.join(cwd, "CMakeLists.txt"), "w", encoding="utf-8"
