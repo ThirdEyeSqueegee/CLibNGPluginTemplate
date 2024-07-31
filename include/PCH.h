@@ -138,15 +138,10 @@
 
 /* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-// clang-format off
 #include <RE/Skyrim.h>
 #include <REL/Relocation.h>
+#include <REX/W32.h>
 #include <SKSE/SKSE.h>
-
-#include <ShlObj_core.h>
-#include <Psapi.h>
-#include <Windows.h>
-// clang-format on
 
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/msvc_sink.h>
@@ -195,7 +190,7 @@ public:
         return std::addressof(singleton);
     }
 
-    static constexpr void Register() noexcept
+    static constexpr auto Register() noexcept
     {
         using TEventSource = RE::BSTEventSource<TEvent>;
 
@@ -256,7 +251,7 @@ namespace stl
     using namespace SKSE::stl;
 
     template <typename T, std::size_t Size = 5>
-    constexpr void write_thunk_call(const std::uintptr_t a_address) noexcept
+    constexpr auto write_thunk_call(const std::uintptr_t a_address) noexcept
     {
         SKSE::AllocTrampoline(14);
         auto& trampoline{ SKSE::GetTrampoline() };
@@ -264,7 +259,7 @@ namespace stl
     }
 
     template <typename T, std::size_t Size = 5>
-    constexpr void write_thunk_call() noexcept
+    constexpr auto write_thunk_call() noexcept
     {
         write_thunk_call<T, Size>(T::address);
     }
@@ -277,13 +272,13 @@ namespace stl
     }
 
     template <typename TDest, typename TSource>
-    constexpr void write_vfunc(const std::size_t a_vtableIdx = 0) noexcept
+    constexpr auto write_vfunc(const std::size_t a_vtableIdx = 0) noexcept
     {
         write_vfunc<TSource>(TDest::VTABLE[a_vtableIdx]);
     }
 
     template <typename T, std::size_t Size = 5>
-    constexpr void write_thunk_jump(const std::uintptr_t a_src) noexcept
+    constexpr auto write_thunk_jump(const std::uintptr_t a_src) noexcept
     {
         SKSE::AllocTrampoline(14);
         auto& trampoline{ SKSE::GetTrampoline() };
@@ -302,11 +297,26 @@ namespace stl
         {
         };
 
+        template <typename Rep, typename Duration>
+        struct is_chrono_duration<const std::chrono::duration<Rep, Duration>> : std::true_type
+        {
+        };
+
+        template <typename Rep, typename Duration>
+        struct is_chrono_duration<volatile std::chrono::duration<Rep, Duration>> : std::true_type
+        {
+        };
+
+        template <typename Rep, typename Duration>
+        struct is_chrono_duration<const volatile std::chrono::duration<Rep, Duration>> : std::true_type
+        {
+        };
+
         template <typename T>
         concept is_duration = is_chrono_duration<T>::value;
     } // namespace detail
 
-    void add_thread_task(const std::function<void()>& a_fn, const detail::is_duration auto a_wait_for = 0ms) noexcept
+    auto add_thread_task(const std::function<void()>& a_fn, const detail::is_duration auto a_wait_for = 0ms) noexcept
     {
         std::jthread([=] {
             std::this_thread::sleep_for(a_wait_for);

@@ -2,16 +2,15 @@
   "version": 6,
   "cmakeMinimumRequired": {
     "major": 3,
-    "minor": 29,
-    "patch": 2
+    "minor": 30
   },
   "configurePresets": [
     {
       "name": "base",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS": "$penv{CXXFLAGS} $env{COMMONLIBSSE_COMPILER} $env{COMMONLIBSSE_PLATFORM} $env{COMMONLIBSSE_TEXT}",
-        "CMAKE_SHARED_LINKER_FLAGS": "$penv{SHARED_LINKER_FLAGS} $env{COMMONLIBSSE_LINKER}",
+        "CMAKE_CXX_FLAGS": "$env{COMMONLIBSSE_COMPILER} $env{COMMONLIBSSE_PLATFORM}",
+        "CMAKE_SHARED_LINKER_FLAGS": "$env{COMMONLIBSSE_LINKER}",
         "CMAKE_MSVC_RUNTIME_LIBRARY": "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL"
       }
     },
@@ -33,14 +32,6 @@
       }
     },
     {
-      "name": "win32-unicode",
-      "hidden": true,
-      "inherits": "win32",
-      "environment": {
-        "COMMONLIBSSE_TEXT": "-DUNICODE -D_UNICODE"
-      }
-    },
-    {
       "name": "x64",
       "hidden": true,
       "architecture": {
@@ -54,13 +45,12 @@
       "generator": "Ninja",
       "cmakeExecutable": "C:/Program Files/CMake/bin/cmake.exe",
       "environment": {
-        "COMMONLIBSSE_COMPILER": "/cgthreads8 /diagnostics:caret /EHsc /fp:contract /fp:except- /guard:cf- /MP /sdl /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor /Zc:templateScope",
-        "COMMONLIBSSE_LINKER": "/CGTHREADS:8 /MACHINE:x64 /DEBUG:FULL"
+        "COMMONLIBSSE_COMPILER": "/EHsc /fp:contract /fp:except- /cgthreads8 /MP /diagnostics:caret /sdl /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor /Zc:templateScope",
+        "COMMONLIBSSE_LINKER": "/CGTHREADS:8 /DEBUG:FULL"
       },
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "/fp:fast /GR- /Gw /O2 /Ob3 /Qpar",
-        "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO": "/LTCG:INCREMENTAL /OPT:REF,ICF=4",
-        "CMAKE_SHARED_LINKER_FLAGS_DEBUG": "/DEBUGTYPE:FIXUP"
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "/O2 /Ob3 /fp:fast /GR- /Gw /Qpar",
+        "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO": "/LTCG:INCREMENTAL /OPT:REF,ICF=4"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
@@ -71,7 +61,7 @@
     },
     {
       "name": "build-release-msvc",
-      "inherits": ["base", "vcpkg", "win32-unicode", "x64", "msvc"],
+      "inherits": ["base", "vcpkg", "win32", "x64", "msvc"],
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "RelWithDebInfo"
       },
@@ -81,7 +71,7 @@
     },
     {
       "name": "build-debug-msvc",
-      "inherits": ["base", "vcpkg", "win32-unicode", "x64", "msvc"],
+      "inherits": ["base", "vcpkg", "win32", "x64", "msvc"],
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug"
       },
