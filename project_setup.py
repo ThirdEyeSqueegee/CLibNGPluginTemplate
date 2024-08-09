@@ -112,3 +112,6 @@ if from_path.lower() == "n":
     )
 
     subprocess.run(["git", "submodule", "update", "--init", "--recursive"])
+
+# Self-destruct
+os.remove(__file__)
