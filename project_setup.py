@@ -17,7 +17,6 @@ def onexc(func, path, exc_info):
 # Remove original git repo
 if os.path.isdir(".git"):
     shutil.rmtree(".git", onexc=onexc)
-    # subprocess.run(["git", "init"])
 
 # Remove README.md
 os.remove("README.md")
