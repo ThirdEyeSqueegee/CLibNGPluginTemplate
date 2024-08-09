@@ -10,7 +10,6 @@
   - Select how you want to fetch CommonLibSSE-NG:
     - Local instance (default): Use CommonLibSSE-NG from the path defined in the `CommonLibSSEPath` environment variable
     - Submodule: Use CommonLibSSE-NG as a git submodule
-  - `project_setup.py` just does a few convenience things like setting the project name in `vcpkg.json` and `CMakeLists.txt`
 
 ## Building your project
 
@@ -21,7 +20,7 @@
 
 - [vcpkg](https://github.com/microsoft/vcpkg)
   - Create a new environment variable called `VCPKG_ROOT` which points to your vcpkg install directory
-- [CMake](https://cmake.org/)
+- [CMake](https://cmake.org)
 - [LLVM](https://github.com/llvm/llvm-project/releases)
 - Visual Studio 2022 build tools
 - Optional: If using a common instance of CommonLibSSE-NG, create a new environment variable called `CommonLibSSEPath` that points to the instance
