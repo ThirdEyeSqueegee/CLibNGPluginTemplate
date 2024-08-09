@@ -19,9 +19,8 @@
       "hidden": true,
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
-        "VCPKG_TARGET_TRIPLET": "x64-windows-skse",
-        "VCPKG_HOST_TRIPLET": "x64-windows-skse",
-        "VCPKG_OVERLAY_TRIPLETS": "${sourceDir}/cmake"
+        "VCPKG_TARGET_TRIPLET": "x64-windows-static-md",
+        "VCPKG_HOST_TRIPLET": "x64-windows-static-md"
       }
     },
     {
