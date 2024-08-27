@@ -13,7 +13,7 @@ void Listener(SKSE::MessagingInterface::Message* message) noexcept
 
 SKSEPluginLoad(const SKSE::LoadInterface* skse)
 {
-    InitializeLogging();
+    InitLogging();
 
     const auto plugin{ SKSE::PluginDeclaration::GetSingleton() };
     const auto name{ plugin->GetName() };
