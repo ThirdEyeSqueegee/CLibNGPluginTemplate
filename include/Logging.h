@@ -1,3 +1,3 @@
 #pragma once
 
-void InitializeLogging() noexcept;
+void InitLogging() noexcept;

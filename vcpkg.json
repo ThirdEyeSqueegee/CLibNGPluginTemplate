@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "name": "plugin-name",
   "version-semver": "0.0.1",
-  "builtin-baseline": "8ae59b5b1329a51875abc71d528da93d9c3e8972",
+  "builtin-baseline": "509f71e53f45e46c13fa7935d2f6a45803580c07",
   "dependencies": ["fmt", "spdlog", "rapidcsv", "simpleini", "directxtk"],
   "overrides": [
     {

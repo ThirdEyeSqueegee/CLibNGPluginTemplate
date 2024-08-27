@@ -154,6 +154,15 @@ using namespace REL::literals;
 
 namespace logger = SKSE::log;
 
+using u8  = std::uint8_t;
+using u16 = std::uint16_t;
+using u32 = std::uint32_t;
+using u64 = std::uint64_t;
+using i8  = std::int8_t;
+using i16 = std::int16_t;
+using i32 = std::int32_t;
+using i64 = std::int64_t;
+
 template <typename T>
 class Singleton
 {
@@ -311,11 +320,6 @@ namespace stl
         template <typename T>
         concept is_duration = is_chrono_duration<T>::value;
     } // namespace detail
-
-    inline auto add_thread_task(const std::function<void()>& a_fn) noexcept
-    {
-        std::jthread([=] { SKSE::GetTaskInterface()->AddTask(a_fn); }).detach();
-    }
 
     auto add_thread_task(const std::function<void()>& a_fn, const detail::is_duration auto a_wait_for) noexcept
     {
