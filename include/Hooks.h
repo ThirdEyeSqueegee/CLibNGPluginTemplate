@@ -7,7 +7,7 @@ namespace Hooks
     class MainUpdate : public Singleton<MainUpdate>
     {
     public:
-        static std::int32_t Thunk() noexcept;
+        static i32 Thunk() noexcept;
 
         inline static REL::Relocation<decltype(&Thunk)> func;
 

@@ -1,7 +1,5 @@
 import os
-import re
 import subprocess
-import json
 import shutil
 import stat
 
@@ -35,19 +33,6 @@ elif from_path.lower() == "n":
 else:
     print("Invalid input")
     exit()
-
-# Update vcpkg.json
-pattern = re.compile(r"(?<!^)(?=[A-Z])")
-
-with open("vcpkg.json", "r", encoding="utf-8") as vcpkg_json_file:
-    vcpkg_json = json.load(vcpkg_json_file)
-
-name = pattern.sub("-", project_name).lower()
-vcpkg_json["name"] = name
-vcpkg_json["version-semver"] = "1.0.0"
-
-with open("vcpkg.json", "w", encoding="utf-8") as vcpkg_json_file:
-    json.dump(vcpkg_json, vcpkg_json_file, indent=2)
 
 # Update CMakeLists.txt
 with open("CMakeLists.txt", "r", encoding="utf-8") as cmakelists_file:

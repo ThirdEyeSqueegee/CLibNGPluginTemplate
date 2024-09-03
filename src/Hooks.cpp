@@ -6,9 +6,10 @@ namespace Hooks
     {
         stl::write_thunk_call<MainUpdate>();
         logger::info("Installed main update hook");
+        logger::info("");
     }
 
-    std::int32_t MainUpdate::Thunk() noexcept
+    i32 MainUpdate::Thunk() noexcept
     {
         return func();
     }
