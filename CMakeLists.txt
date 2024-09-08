@@ -18,6 +18,8 @@ configure_file(
   @ONLY
 )
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+
 # Add headers
 file(
   GLOB_RECURSE
@@ -39,10 +41,11 @@ source_group(
   FILES ${headers} ${sources}
 )
 
-# Add CommonLibSSE-NG
-set(BUILD_TESTS OFF)
-add_subdirectory($ENV{CommonLibSSEPath} CommonLibSSE-NG)
-include($ENV{CommonLibSSEPath}/cmake/CommonLibSSE.cmake)
+# # Add CommonLibSSE-NG
+# set(BUILD_TESTS OFF)
+# add_subdirectory($ENV{CommonLibSSEPath} CommonLibSSE-NG)
+# include($ENV{CommonLibSSEPath}/cmake/CommonLibSSE.cmake)
+find_package(CommonLibSSE CONFIG REQUIRED)
 
 add_commonlibsse_plugin(
   ${PROJECT_NAME}

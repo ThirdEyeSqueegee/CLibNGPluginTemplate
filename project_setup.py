@@ -24,34 +24,6 @@ project_name = input("Enter project name: ")
 author = input("Enter author: ")
 print()
 
-# Choose how to consume CommonLibSSE-NG
-from_path = input("Use CommonLibSSE-NG from path? (Y/n): ")
-if from_path == "" or from_path.lower() == "y":
-    print(f"Using CommonLibSSE-NG from path {os.environ["CommonLibSSEPath"]}")
-elif from_path.lower() == "n":
-    print("Using CommonLibSSE-NG as submodule")
-else:
-    print("Invalid input")
-    exit()
-
-# Update CMakeLists.txt
-with open("CMakeLists.txt", "r", encoding="utf-8") as cmakelists_file:
-    cmakelists = cmakelists_file.read()
-
-cmakelists = cmakelists.replace("PluginName", project_name)
-cmakelists = cmakelists.replace("AuthorName", author)
-cmakelists = cmakelists.replace("0.0.1", "1.0.0")
-
-if from_path.lower() == "n":
-    cmakelists = cmakelists.replace(
-        "add_subdirectory($ENV{CommonLibSSEPath} CommonLibSSE-NG)",
-        "add_subdirectory(extern/CommonLibSSE-NG)",
-    )
-    cmakelists = cmakelists.replace("$ENV{CommonLibSSEPath}", "extern/CommonLibSSE-NG")
-
-with open("CMakeLists.txt", "w", encoding="utf-8") as cmakelists_file:
-    cmakelists_file.write(cmakelists)
-
 # Rename ini file
 os.rename(
     os.path.join("contrib", "Config", "PluginName.ini"),
@@ -80,23 +52,6 @@ print()
 
 # Initialize empty git repo
 subprocess.run(["git", "init"])
-
-# Initialize CommonLibSSE-NG submodule if chosen
-if from_path.lower() == "n":
-    print("\nInitializing CommonLibSSE-NG submodule...")
-    subprocess.run(
-        [
-            "git",
-            "submodule",
-            "add",
-            "-b",
-            "ng",
-            "https://github.com/alandtse/CommonLibVR",
-            "extern/CommonLibSSE-NG",
-        ]
-    )
-
-    subprocess.run(["git", "submodule", "update", "--init", "--recursive"])
 
 # Self-destruct
 os.remove(__file__)

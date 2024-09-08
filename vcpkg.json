@@ -1,11 +1,24 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-  "builtin-baseline": "0f88ecb8528605f91980b90a2c5bad88e3cb565f",
-  "dependencies": ["fmt", "spdlog", "rapidcsv", "simpleini", "directxtk"],
-  "overrides": [
-    {
-      "name": "fmt",
-      "version": "10.2.1"
-    }
-  ]
+  "dependencies": [
+    "commonlibsse-ng",
+    "simpleini"
+  ],
+  "builtin-baseline": "68d349964cb4e8da561fd849d9491e6ba11c5681",
+  "vcpkg-configuration": {
+    "registries": [
+      {
+        "kind": "git",
+        "repository": "https://github.com/ThirdEyeSqueegee/CommonLibSSE-NG-vcpkg",
+        "baseline": "70316cfbe0780b062d096d71e29749da851937e3",
+        "packages": [
+          "commonlibsse-ng",
+          "spdlog"
+        ]
+      }
+    ],
+    "overlay-ports": [
+      "./cmake/ports"
+    ]
+  }
 }

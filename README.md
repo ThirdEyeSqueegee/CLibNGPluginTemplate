@@ -4,12 +4,9 @@
 
 - Clone the repository
 - Optional:
-  - Run `cd .\CLibNGPluginTemplate\`
-  - Run `py .\project_setup.py\` (requires [Python 3.12+](https://www.python.org/download/pre-releases/))
-  - Enter your project name (in CamelCase)
-  - Select how you want to fetch CommonLibSSE-NG:
-    - Local instance (default): Use CommonLibSSE-NG from the path defined in the `CommonLibSSEPath` environment variable
-    - Submodule: Use CommonLibSSE-NG as a git submodule
+  - Run `cd CLibNGPluginTemplate`
+  - Run `py project_setup.py` (requires [Python 3.12+](https://www.python.org/download/pre-releases/))
+- You should run `update_baselines.py` periodically to make sure vcpkg is fetching the latest versions of CommonLibSSE-NG and other dependencies
 
 ## Building your project
 
@@ -23,7 +20,6 @@
 - [CMake](https://cmake.org)
 - [LLVM](https://github.com/llvm/llvm-project/releases)
 - Visual Studio 2022 build tools
-- Optional: If using a common instance of CommonLibSSE-NG, create a new environment variable called `CommonLibSSEPath` that points to the instance
 
 ## Resources
 
