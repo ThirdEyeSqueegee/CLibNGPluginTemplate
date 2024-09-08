@@ -2,6 +2,7 @@ import os
 import subprocess
 import shutil
 import stat
+from update_baselines import update_baselines
 
 
 def onexc(func, path, exc_info):
@@ -54,11 +55,9 @@ with open(
 ) as settings_cpp_file:
     settings_cpp_file.write(settings_cpp)
 
-# Update vcpkg.json builtin-baseline
-print("Updating vcpkg.json...")
-subprocess.run(
-    [f"{os.environ["VCPKG_ROOT"]}\\vcpkg.exe", "x-update-baseline"], shell=True
-)
+# Update baselines
+print("Updating vcpkg.json baselines...")
+update_baselines()
 print()
 
 # Initialize empty git repo
