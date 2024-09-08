@@ -24,6 +24,17 @@ project_name = input("Enter project name: ")
 author = input("Enter author: ")
 print()
 
+# Update CMakeLists.txt
+with open("CMakeLists.txt", "r", encoding="utf-8") as cmakelists_file:
+    cmakelists = cmakelists_file.read()
+
+cmakelists = cmakelists.replace("PluginName", project_name)
+cmakelists = cmakelists.replace("AuthorName", author)
+cmakelists = cmakelists.replace("0.0.1", "1.0.0")
+
+with open("CMakeLists.txt", "w", encoding="utf-8") as cmakelists_file:
+    cmakelists_file.write(cmakelists)
+
 # Rename ini file
 os.rename(
     os.path.join("contrib", "Config", "PluginName.ini"),

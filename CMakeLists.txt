@@ -41,10 +41,7 @@ source_group(
   FILES ${headers} ${sources}
 )
 
-# # Add CommonLibSSE-NG
-# set(BUILD_TESTS OFF)
-# add_subdirectory($ENV{CommonLibSSEPath} CommonLibSSE-NG)
-# include($ENV{CommonLibSSEPath}/cmake/CommonLibSSE.cmake)
+# Add CommonLibSSE-NG
 find_package(CommonLibSSE CONFIG REQUIRED)
 
 add_commonlibsse_plugin(
@@ -55,6 +52,7 @@ add_commonlibsse_plugin(
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
+# Add dependencies
 find_path(SIMPLEINI_INCLUDE_DIRS "SimpleIni.h")
 
 target_include_directories(
