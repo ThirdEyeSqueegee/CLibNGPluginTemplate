@@ -10,9 +10,16 @@
       {
         "kind": "git",
         "repository": "https://github.com/ThirdEyeSqueegee/CommonLibSSE-NG-vcpkg",
-        "baseline": "70316cfbe0780b062d096d71e29749da851937e3",
+        "baseline": "89f98337e66e099cc674268df17607e794154817",
         "packages": [
-          "commonlibsse-ng",
+          "commonlibsse-ng"
+        ]
+      },
+      {
+        "kind": "git",
+        "repository": "https://github.com/ThirdEyeSqueegee/vcpkg-ports",
+        "baseline": "bbcdf9f36d9bc211c4c92a7d49220abbdae68f0c",
+        "packages": [
           "spdlog"
         ]
       }
