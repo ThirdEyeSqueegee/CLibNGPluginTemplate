@@ -18,8 +18,6 @@ configure_file(
   @ONLY
 )
 
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-
 # Add headers
 file(
   GLOB_RECURSE

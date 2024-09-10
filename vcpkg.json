@@ -4,13 +4,13 @@
     "commonlibsse-ng",
     "simpleini"
   ],
-  "builtin-baseline": "68d349964cb4e8da561fd849d9491e6ba11c5681",
+  "builtin-baseline": "eba7c6a894fce24146af4fdf161fef8e90dd6be3",
   "vcpkg-configuration": {
     "registries": [
       {
         "kind": "git",
         "repository": "https://github.com/ThirdEyeSqueegee/CommonLibSSE-NG-vcpkg",
-        "baseline": "89f98337e66e099cc674268df17607e794154817",
+        "baseline": "7e0833071d18e7344b2b7e136abeb46609ae1b61",
         "packages": [
           "commonlibsse-ng"
         ]
