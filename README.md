@@ -6,7 +6,8 @@
 - Optional:
   - Run `cd CLibNGPluginTemplate`
   - Run `py project_setup.py` (requires [Python 3.12+](https://www.python.org/download/pre-releases/))
-- You should run `update_baselines.py` periodically to make sure vcpkg is fetching the latest versions of CommonLibSSE-NG and other dependencies
+
+**NOTE**: You should run `vcpkg x-update-baseline` (in the project's root directory) often to make sure that vcpkg is fetching the latest versions of CommonLibSSE-NG and other dependencies
 
 ## Building your project
 
