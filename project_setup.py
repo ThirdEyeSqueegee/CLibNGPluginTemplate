@@ -1,8 +1,8 @@
-from os import access, chmod, remove, rename, environ, W_OK
+import stat
+from os import W_OK, access, chmod, environ, remove, rename
 from os.path import isdir, join
 from shutil import rmtree
 from subprocess import run
-import stat
 
 
 def onexc(func, path, exc_info):
