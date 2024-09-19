@@ -18,25 +18,19 @@ configure_file(
   @ONLY
 )
 
-# Add headers
-file(
-  GLOB_RECURSE
-  headers
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
-)
-list(REMOVE_ITEM headers ${CMAKE_CURRENT_SOURCE_DIR}/include/PCH.h)
-
 # Add sources
 file(
   GLOB_RECURSE
   sources
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
   ${CMAKE_CURRENT_BINARY_DIR}/version.rc
 )
+list(REMOVE_ITEM headers ${CMAKE_CURRENT_SOURCE_DIR}/include/PCH.h)
 
 source_group(
   TREE ${CMAKE_CURRENT_SOURCE_DIR}
-  FILES ${headers} ${sources}
+  FILES ${sources}
 )
 
 # Add CommonLibSSE-NG
@@ -45,7 +39,7 @@ find_package(CommonLibSSE CONFIG REQUIRED)
 add_commonlibsse_plugin(
   ${PROJECT_NAME}
   AUTHOR AuthorName
-  SOURCES ${headers} ${sources}
+  SOURCES ${sources}
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
@@ -56,9 +50,8 @@ find_path(SIMPLEINI_INCLUDE_DIRS "SimpleIni.h")
 target_include_directories(
   ${PROJECT_NAME}
   PRIVATE
-  ${SIMPLEINI_INCLUDE_DIRS}
-  PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${SIMPLEINI_INCLUDE_DIRS}
 )
 
 target_precompile_headers(
