@@ -65,6 +65,7 @@ BraceWrapping:
 BreakAdjacentStringLiterals: false
 BreakBeforeBraces: Custom
 BreakConstructorInitializers: BeforeColon
+BreakTemplateDeclarations: Yes
 ColumnLimit: 180
 FixNamespaceComments: true
 InsertNewlineAtEOF: true

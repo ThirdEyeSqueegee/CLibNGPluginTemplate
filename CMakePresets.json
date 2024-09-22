@@ -26,7 +26,7 @@
       "name": "win32",
       "hidden": true,
       "environment": {
-        "COMMONLIBSSE_PLATFORM": "-DWIN32_LEAN_AND_MEAN -DNOMINMAX"
+        "COMMONLIBSSE_PLATFORM": "/DWIN32_LEAN_AND_MEAN /DNOMINMAX"
       }
     },
     {
@@ -43,12 +43,13 @@
       "generator": "Ninja",
       "cmakeExecutable": "C:/Program Files/CMake/bin/cmake.exe",
       "environment": {
-        "COMMONLIBSSE_COMPILER": "/EHsc /fp:contract /fp:except- /cgthreads8 /MP /diagnostics:caret /sdl /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:preprocessor /Zc:templateScope",
-        "COMMONLIBSSE_LINKER": "/CGTHREADS:8 /DEBUG:FULL"
+        "COMMONLIBSSE_COMPILER": "/EHsc /fp:contract /fp:except- /jumptablerdata /Zc:enumTypes,templateScope /cgthreads8 /MP /diagnostics:caret /W4",
+        "COMMONLIBSSE_LINKER": "/CGTHREADS:8 /DEBUG"
       },
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "/O2 /Ob3 /fp:fast /GR- /Gw /Qpar",
-        "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO": "/LTCG:INCREMENTAL /OPT:REF,ICF=4"
+        "CMAKE_CXX_FLAGS_RELWITHDEBINFO": "/O2 /Ob3 /fp:fast /GR- /Gw /Qpar /Zc:inline /DNDEBUG",
+        "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO": "/LTCG:INCREMENTAL /OPT:REF,ICF=4",
+        "CMAKE_SHARED_LINKER_FLAGS_DEBUG": "/DEBUGTYPE:FIXUP /INCREMENTAL"
       },
       "vendor": {
         "microsoft.com/VisualStudioSettings/CMake/1.0": {
