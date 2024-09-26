@@ -114,7 +114,6 @@
 #include <REL/Relocation.h>
 #include <REX/W32.h>
 #include <SKSE/SKSE.h>
-
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/msvc_sink.h>
 
@@ -278,13 +277,11 @@ namespace stl
     {
         template <typename>
         struct is_chrono_duration : std::false_type
-        {
-        };
+        {};
 
         template <typename Rep, typename Period>
         struct is_chrono_duration<std::chrono::duration<Rep, Period>> : std::true_type
-        {
-        };
+        {};
 
         template <typename T>
         concept is_duration = is_chrono_duration<T>::value;

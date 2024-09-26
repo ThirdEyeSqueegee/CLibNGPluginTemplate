@@ -1,15 +1,15 @@
 cmake_minimum_required(VERSION 3.30)
 message("Using toolchain file ${CMAKE_TOOLCHAIN_FILE}.")
 
+# -------------------------------------------------- Setup project ----------------------------------------------------
 project(
   PluginName
   VERSION 0.0.1
   LANGUAGES CXX
 )
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ON)
-set(CMAKE_INTERPROCEDURAL_OPTIMIZATION_DEBUG OFF)
 set(CMAKE_OPTIMIZE_DEPENDENCIES ON)
 
 configure_file(
@@ -18,12 +18,14 @@ configure_file(
   @ONLY
 )
 
-# Add sources
+# -------------------------------------------------- Add sources ------------------------------------------------------
 file(
   GLOB_RECURSE
   sources
   ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/**/*.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/**/*.cpp
   ${CMAKE_CURRENT_BINARY_DIR}/version.rc
 )
 list(REMOVE_ITEM headers ${CMAKE_CURRENT_SOURCE_DIR}/include/PCH.h)
@@ -33,9 +35,12 @@ source_group(
   FILES ${sources}
 )
 
-# Add CommonLibSSE-NG
+# -------------------------------------------------- Add dependencies -------------------------------------------------
 find_package(CommonLibSSE CONFIG REQUIRED)
 
+find_path(SIMPLEINI_INCLUDE_DIRS SimpleIni.h)
+
+# -------------------------------------------------- Setup DLL --------------------------------------------------------
 add_commonlibsse_plugin(
   ${PROJECT_NAME}
   AUTHOR AuthorName
@@ -43,9 +48,6 @@ add_commonlibsse_plugin(
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
-
-# Add dependencies
-find_path(SIMPLEINI_INCLUDE_DIRS "SimpleIni.h")
 
 target_include_directories(
   ${PROJECT_NAME}
@@ -61,6 +63,26 @@ target_precompile_headers(
   ${SIMPLEINI_INCLUDE_DIRS}/SimpleIni.h
 )
 
+target_compile_options(
+  ${PROJECT_NAME}
+  PRIVATE
+  /cgthreads8 /diagnostics:caret /jumptablerdata /MP /W4 /Zc:__cplusplus /Zc:enumTypes /Zc:inline /Zc:templateScope
+)
+
+if(CMAKE_BUILD_TYPE STREQUAL RelWithDebInfo)
+  target_compile_options(
+    ${PROJECT_NAME}
+    PRIVATE
+    /fp:fast /Ob3 /GL /GR- /Gw /Qpar
+  )
+  target_link_options(
+    ${PROJECT_NAME}
+    PRIVATE
+    /CGTHREADS:8 /INCREMENTAL:NO /OPT:REF,ICF=4
+  )
+endif()
+
+# -------------------------------------------------- Post-build -------------------------------------------------------
 if(CMAKE_BUILD_TYPE STREQUAL Debug)
   set(BUILD_NAME Debug)
 else()

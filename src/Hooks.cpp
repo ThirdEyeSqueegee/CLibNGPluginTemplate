@@ -9,8 +9,5 @@ namespace Hooks
         logger::info("");
     }
 
-    i32 MainUpdate::Thunk() noexcept
-    {
-        return func();
-    }
+    i32 MainUpdate::Thunk() noexcept { return func(); }
 } // namespace Hooks
