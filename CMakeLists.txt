@@ -23,9 +23,7 @@ file(
   GLOB_RECURSE
   sources
   ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
-  ${CMAKE_CURRENT_SOURCE_DIR}/include/**/*.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/**/*.cpp
   ${CMAKE_CURRENT_BINARY_DIR}/version.rc
 )
 list(REMOVE_ITEM headers ${CMAKE_CURRENT_SOURCE_DIR}/include/PCH.h)
@@ -102,8 +100,8 @@ add_custom_command(
   ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/contrib/Config/${PROJECT_NAME}.ini ${CMAKE_CURRENT_SOURCE_DIR}/contrib/Plugin${BUILD_NAME}/skse/plugins
 )
 
-file(GLOB_RECURSE OUTPUT_DLLS ${CMAKE_CURRENT_SOURCE_DIR}/contrib/**/*.dll)
-file(GLOB_RECURSE OUTPUT_PDBS ${CMAKE_CURRENT_SOURCE_DIR}/contrib/**/*.pdb)
+file(GLOB_RECURSE OUTPUT_DLLS ${CMAKE_CURRENT_SOURCE_DIR}/contrib/*.dll)
+file(GLOB_RECURSE OUTPUT_PDBS ${CMAKE_CURRENT_SOURCE_DIR}/contrib/*.pdb)
 
 set_property(
   TARGET ${PROJECT_NAME}
