@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
   "dependencies": ["commonlibsse-ng", "simpleini"],
-  "builtin-baseline": "0affe8710a4a5b26328e909fe1ad7146df39d108",
+  "builtin-baseline": "f0f811770e0538fcb295a1750c0a5e0de5131d29",
   "vcpkg-configuration": {
     "registries": [
       {

@@ -22,6 +22,7 @@ configure_file(
 file(
   GLOB_RECURSE
   sources
+  CONFIGURE_DEPENDS
   ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h
   ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
   ${CMAKE_CURRENT_BINARY_DIR}/version.rc
