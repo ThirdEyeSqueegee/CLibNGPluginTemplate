@@ -1,20 +1,28 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-  "dependencies": ["commonlibsse-ng", "simpleini"],
-  "builtin-baseline": "f0f811770e0538fcb295a1750c0a5e0de5131d29",
+  "dependencies": [
+    "commonlibsse-ng",
+    "simpleini"
+  ],
+  "builtin-baseline": "c0bca5189fa01456193e92b0c41f06b767982518",
   "vcpkg-configuration": {
     "registries": [
       {
         "kind": "git",
-        "baseline": "8704e6837572de2ebe088450173eba75d388f697",
+        "baseline": "7b827d5fce4ec9ba4b1ca18f3a947f41bba20652",
         "repository": "https://github.com/ThirdEyeSqueegee/CommonLibSSE-NG-vcpkg",
-        "packages": ["commonlibsse-ng"]
+        "packages": [
+          "commonlibsse-ng"
+        ]
       },
       {
         "kind": "git",
         "baseline": "e376718dc96bd2a6431cc8f7b05eca555d51a123",
         "repository": "https://github.com/ThirdEyeSqueegee/vcpkg-ports",
-        "packages": ["openvr", "spdlog"]
+        "packages": [
+          "openvr",
+          "spdlog"
+        ]
       }
     ]
   }
