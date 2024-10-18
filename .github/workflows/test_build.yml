@@ -1,0 +1,35 @@
+name: Test Build
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: test-build
+  cancel-in-progress: true
+
+jobs:
+  test-build:
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        build:
+          - debug
+          - release
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get CMake
+        uses: lukka/get-cmake@latest
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+
+      - name: Build
+        uses: lukka/run-cmake@v10
+        with:
+          configurePreset: build-${{ matrix.build }}
+          buildPreset: ${{ matrix.build }}

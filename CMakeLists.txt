@@ -27,7 +27,7 @@ file(
   ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
   ${CMAKE_CURRENT_BINARY_DIR}/version.rc
 )
-list(REMOVE_ITEM headers ${CMAKE_CURRENT_SOURCE_DIR}/include/PCH.h)
+list(REMOVE_ITEM sources ${CMAKE_CURRENT_SOURCE_DIR}/include/PCH.h)
 
 source_group(
   TREE ${CMAKE_CURRENT_SOURCE_DIR}

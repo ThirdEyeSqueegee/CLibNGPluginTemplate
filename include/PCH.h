@@ -241,7 +241,6 @@ namespace stl
     template <typename T, std::size_t Size = 5>
     constexpr auto write_thunk_call(const std::uintptr_t a_address) noexcept
     {
-        SKSE::AllocTrampoline(14);
         auto& trampoline{ SKSE::GetTrampoline() };
         T::func = trampoline.write_call<Size>(a_address, T::Thunk);
     }
@@ -268,7 +267,6 @@ namespace stl
     template <typename T, std::size_t Size = 5>
     constexpr auto write_thunk_jump(const std::uintptr_t a_src) noexcept
     {
-        SKSE::AllocTrampoline(14);
         auto& trampoline{ SKSE::GetTrampoline() };
         T::func = trampoline.write_branch<Size>(a_src, T::Thunk);
     }
