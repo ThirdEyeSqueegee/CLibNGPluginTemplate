@@ -9,7 +9,8 @@
       "name": "base",
       "hidden": true,
       "generator": "Ninja",
-      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+      "cmakeExecutable": "C:/Program Files/CMake/bin/cmake.exe"
     },
     {
       "name": "build-release",

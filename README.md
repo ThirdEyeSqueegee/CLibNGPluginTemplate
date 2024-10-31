@@ -3,9 +3,8 @@
 ## Setup
 
 - Clone the repository
-- Optional:
-  - Run `cd CLibNGPluginTemplate`
-  - Run `py project_setup.py` (requires [Python 3.12+](https://www.python.org/download/pre-releases/))
+- Run `cd CLibNGPluginTemplate`
+- Run `py project_setup.py` (requires [Python 3.12+](https://www.python.org/download/pre-releases/))
 
 **NOTE**: You should run `vcpkg x-update-baseline` (in the project's root directory) often to make sure that vcpkg is fetching the latest versions of CommonLibSSE-NG and other dependencies
 
@@ -19,7 +18,7 @@
 - [vcpkg](https://github.com/microsoft/vcpkg)
   - Create a new environment variable called `VCPKG_ROOT` which points to your vcpkg install directory
 - [CMake](https://cmake.org)
-- [LLVM](https://github.com/llvm/llvm-project/releases)
+- [LLVM](https://github.com/llvm/llvm-project/releases) (for `clang-format` and `clang-tidy`)
 - Visual Studio 2022 build tools
 
 ## Resources
