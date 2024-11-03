@@ -1,6 +1,6 @@
 #pragma once
 
-class Settings : public Singleton<Settings>
+class Settings
 {
 public:
     static void LoadSettings() noexcept;

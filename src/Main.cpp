@@ -24,7 +24,7 @@ SKSEPluginLoad(const SKSE::LoadInterface* skse)
 
     Init(skse);
 
-    // The following is only required if you use write_thunk_call or write_thunk jump. If you aren't using
+    // The following is only required if you use write_thunk_call or write_thunk_jump. If you aren't using
     // those function, you can safely remove this line.
     //
     // To calculate the size of the trampoline, take the number of 5 byte write_call/write_branch, say p,
