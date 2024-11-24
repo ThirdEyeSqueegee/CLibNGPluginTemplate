@@ -219,10 +219,15 @@ namespace stl
     using namespace SKSE::stl;
 
     template <typename T, std::size_t Size = 5>
-    constexpr auto write_thunk_call(const std::uintptr_t a_address) noexcept
+    constexpr auto write_thunk_call(REL::Relocation<> a_target) noexcept
     {
-        auto& trampoline{ SKSE::GetTrampoline() };
-        T::func = trampoline.write_call<Size>(a_address, T::Thunk);
+        T::func = a_target.write_call<Size>(T::Thunk);
+    }
+
+    template <typename T, std::size_t Size = 5>
+    constexpr auto write_thunk_jump(REL::Relocation<> a_target) noexcept
+    {
+        T::func = a_target.write_branch<Size>(T::Thunk);
     }
 
     template <typename T>
@@ -236,13 +241,6 @@ namespace stl
     constexpr auto write_vfunc(const std::size_t a_vtableIdx = 0) noexcept
     {
         write_vfunc<TSource>(TDest::VTABLE[a_vtableIdx]);
-    }
-
-    template <typename T, std::size_t Size = 5>
-    constexpr auto write_thunk_jump(const std::uintptr_t a_src) noexcept
-    {
-        auto& trampoline{ SKSE::GetTrampoline() };
-        T::func = trampoline.write_branch<Size>(a_src, T::Thunk);
     }
 
     namespace detail
