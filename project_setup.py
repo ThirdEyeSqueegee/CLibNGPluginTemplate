@@ -13,9 +13,12 @@ def onexc(func, path, exc_info):
         raise
 
 
-# Remove original git repo
+# Remove git stuff
 if isdir(".git"):
     rmtree(".git", onexc=onexc)
+
+if isdir(".github"):
+    rmtree(".github", onexc=onexc)
 
 # Remove README.md
 remove("README.md")
