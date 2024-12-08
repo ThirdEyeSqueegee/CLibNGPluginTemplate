@@ -13,6 +13,8 @@ void Listener(SKSE::MessagingInterface::Message* message) noexcept
 
 SKSEPluginLoad(const SKSE::LoadInterface* skse)
 {
+    Init(skse);
+
     const auto plugin{ SKSE::PluginDeclaration::GetSingleton() };
     const auto name{ plugin->GetName() };
     const auto version{ plugin->GetVersion() };
@@ -20,8 +22,6 @@ SKSEPluginLoad(const SKSE::LoadInterface* skse)
     logger::init();
 
     logger::info("{} {} is loading...", name, version);
-
-    Init(skse);
 
     // The following is only required if you use write_thunk_call or write_thunk_jump. If you aren't using
     // those function, you can safely remove this line.
