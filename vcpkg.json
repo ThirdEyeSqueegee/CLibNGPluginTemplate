@@ -4,7 +4,7 @@
     "commonlibsse-ng",
     "simpleini"
   ],
-  "builtin-baseline": "b30734e9101c161e442ffb805633f6cfadbc57aa",
+  "builtin-baseline": "e40d24cb149dd138e7c11d490834fa2c81298b32",
   "vcpkg-configuration": {
     "registries": [
       {
