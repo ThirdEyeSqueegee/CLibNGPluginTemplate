@@ -17,7 +17,7 @@
       },
       {
         "kind": "git",
-        "baseline": "6abaa8a737b8e8318ee7597fee5c5d5e639f8ad0",
+        "baseline": "fb5036b5d2a8321a552d44173d60f772761ea097",
         "repository": "https://github.com/ThirdEyeSqueegee/vcpkg-ports",
         "packages": [
           "openvr",
