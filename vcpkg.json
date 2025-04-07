@@ -9,7 +9,7 @@
     "registries": [
       {
         "kind": "git",
-        "baseline": "c6d868d34b65ebd9119d0a2698bf50a85c7ec7c8",
+        "baseline": "e379d4cf3a884ceec8254c62ccfab6fe34aae5e5",
         "repository": "https://github.com/ThirdEyeSqueegee/CommonLibSSE-NG-vcpkg",
         "packages": [
           "commonlibsse-ng"
