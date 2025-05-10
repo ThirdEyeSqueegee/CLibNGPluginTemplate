@@ -4,7 +4,7 @@
     "commonlibsse-ng",
     "simpleini"
   ],
-  "builtin-baseline": "b12aa38a44a29bd8461404f2514e4c7cf00e1fc5",
+  "builtin-baseline": "3e5b8de5f6ebe844bee9d9eba0aed35c652e3c9c",
   "vcpkg-configuration": {
     "registries": [
       {
@@ -17,7 +17,7 @@
       },
       {
         "kind": "git",
-        "baseline": "fb5036b5d2a8321a552d44173d60f772761ea097",
+        "baseline": "6e8f58e05235e344c71ecd10c12659342a932f74",
         "repository": "https://github.com/ThirdEyeSqueegee/vcpkg-ports",
         "packages": [
           "openvr",
